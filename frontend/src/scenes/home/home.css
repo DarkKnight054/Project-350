@@ -1,0 +1,130 @@
+.Home {
+  background-color: #eeeeee;
+}
+.Nav-bar {
+  width: auto;
+  height: 70px;
+  display: flex;
+  padding-left: 5%;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  background-color: #a52a2a;
+  box-shadow: 0px 10px 10px #888888;
+}
+.app-logo {
+  border-radius: 50px;
+}
+.app-name {
+  font-family: "Dancing Script", cursive;
+  font-family: "Island Moments", cursive;
+  font-family: "Itim", cursive;
+  font-family: "Kalam", cursive;
+  font-family: "Marhey", cursive;
+  font-size: 45px;
+  margin-left: 2%;
+  margin-top: auto;
+}
+.login {
+  margin-left: 70%;
+  font-family: "Dancing Script", cursive;
+  font-family: "Island Moments", cursive;
+  font-family: "Itim", cursive;
+  font-family: "Kalam", cursive;
+  font-family: "Marhey", cursive;
+  font-size: 30px;
+  margin-top: auto;
+  margin-bottom: auto;
+  cursor: pointer;
+}
+.register {
+  margin-left: 3%;
+  font-family: "Dancing Script", cursive;
+  font-family: "Island Moments", cursive;
+  font-family: "Itim", cursive;
+  font-family: "Kalam", cursive;
+  font-family: "Marhey", cursive;
+  font-size: 30px;
+  margin-top: auto;
+  margin-bottom: auto;
+  cursor: pointer;
+}
+.content1 {
+  display: flex;
+  margin-top: 50px;
+  width: 100%;
+}
+.image1 {
+  width: 60%;
+  height: 40%;
+  border-radius: 50px;
+  margin-left: 20px;
+  box-shadow: 0px 5px 5px 5px #888888, -5px -5px 5px #888888;
+}
+.text-content1 {
+  width: 500px;
+  margin: auto;
+  font-family: "Cormorant Garamond", serif;
+  color: #540023;
+}
+.image2 {
+  height: 500px;
+  border-radius: 25px;
+  box-shadow: 0px 5px 5px 5px #888888, -5px -5px 5px #888888;
+}
+.image3 {
+  box-shadow: 0px 5px 5px 5px #888888, -5px -5px 5px #888888;
+  margin-left: 75px;
+  height: 500px;
+  border-radius: 25px;
+  width: 600px;
+}
+.image4 {
+  box-shadow: 0px 5px 5px 5px #888888, -5px -5px 5px #888888;
+  margin-left: 75px;
+  height: 500px;
+  border-radius: 25px;
+  width: 500px;
+}
+.content2 {
+  display: flex;
+  height: 400px;
+  padding-left: 50px;
+  padding-top: 150px;
+  padding-bottom: 75px;
+}
+.content3 {
+  display: flex;
+  height: 300px;
+  padding-top: 25px;
+  padding-left: 25px;
+  font-family: "Cormorant Garamond", serif;
+  color: #a52a2a;
+}
+
+.text-content2 {
+  margin-top: 3%;
+  padding-left: 20px;
+  margin-right: 5px;
+  font-size: 40px;
+  color: #a52a2a;
+  font-family: "Cormorant Garamond", serif;
+}
+
+.image5 {
+  box-shadow: 0px 5px 5px 5px #888888, -5px -5px 5px #888888;
+  height: 500px;
+  margin-top: 100px;
+  border-radius: 25px;
+  width: 700px;
+}
+
+.ending {
+  margin-top: 50px;
+  padding: 25px;
+  font-size: 20px;
+  font-family: "Dancing Script", cursive;
+  font-family: "Island Moments", cursive;
+  font-family: "Itim", cursive;
+  font-family: "Kalam", cursive;
+  font-family: "Marhey", cursive;
+}
