@@ -1,5 +1,28 @@
 # Criminal Record Management
 
+### Project Structure
+
+**Project-350**
+    |--- **Frontend**
+    |--- **Backend**
+              |
+              |--- **crab**
+              |          |
+              |          |--- **application**
+              |          |                 |
+              |          |                 |--- **wallet**
+              |          |                 |--- **app.js** (express server)
+              |          |                 |--- **api-test.rest** (to test api)
+              |          |
+              |          |-- **chaincode**
+              |                         |--- **lib**
+              |                                   |--- **criminalRecord.js** (contract)
+              |
+              |--- **test-network**
+                                |
+                                |--- **network.sh** (script to create and deploy channel and chaincode)
+
+
 ### How to run backend
 
 Open terminal and change directory to "backend/test-network"
