@@ -4,30 +4,30 @@
 
 Open terminal and change directory to "backend/test-network"
 
-**_ Stop the network: _**
+**Stop the network:**
 
 ```
 ./network.sh down
 ```
 
-**_ Start test network: _**
+**Start test network:**
 
 ```
 ./network.sh createChannel -ca -c criminalrecord -s couchdb
 ```
 
-**_ Install Chaincode: _**
+**Install Chaincode:**
 
 ```
 ./network.sh deployCC -ccn cRecord -ccp ../crab/chaincode/ -ccl javascript
 ```
 
-**_ CouchDB: _**
+**CouchDB:**
 `http://localhost:5984/_utils/`
-username: admin
-pass: adminpw
+username: admin <br>
+pass: adminpw <br>
 
-**_ Run express server _**
+**Run express server**
 Open terminal on "backend/crab/application" and then:
 
 ```
