@@ -1,7 +1,7 @@
 # Criminal Record Management
 
 ### Project Structure
-
+```
 **Project-350**
     |--- **Frontend**
     |--- **Backend**
@@ -21,6 +21,7 @@
               |--- **test-network**
                                 |
                                 |--- **network.sh** (script to create and deploy channel and chaincode)
+```
 
 
 ### How to run backend
