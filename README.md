@@ -1,26 +1,26 @@
 # Criminal Record Management
 
 ### Project Structure
-```
-**Project-350**
-    |--- **Frontend**
-    |--- **Backend**
+```js
+Project-350
+    |--- Frontend
+    |--- Backend
               |
-              |--- **crab**
-              |          |
-              |          |--- **application**
-              |          |                 |
-              |          |                 |--- **wallet**
-              |          |                 |--- **app.js** (express server)
-              |          |                 |--- **api-test.rest** (to test api)
-              |          |
-              |          |-- **chaincode**
-              |                         |--- **lib**
-              |                                   |--- **criminalRecord.js** (contract)
+              |--- crab
+              |         |
+              |         |--- application
+              |         |               |
+              |         |               |--- wallet
+              |         |               |--- app.js (express server)
+              |         |               |--- api-test.rest (to test api)
+              |         |
+              |         |-- chaincode
+              |                       |--- lib
+              |                               |--- criminalRecord.js (contract)
               |
-              |--- **test-network**
-                                |
-                                |--- **network.sh** (script to create and deploy channel and chaincode)
+              |--- test-network
+                               |
+                               |--- network.sh (script to create and deploy channel and chaincode)
 ```
 
 
