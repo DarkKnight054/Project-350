@@ -6,19 +6,19 @@ Project-350
     |--- Frontend
     |--- Backend
               |
-              |--- crab
+              |--- Crab
               |         |
-              |         |--- application
+              |         |--- Application
               |         |               |
-              |         |               |--- wallet
+              |         |               |--- Wallet
               |         |               |--- app.js (express server)
               |         |               |--- api-test.rest (to test api)
               |         |
-              |         |-- chaincode
-              |                       |--- lib
+              |         |-- Chaincode
+              |                       |--- Lib
               |                               |--- criminalRecord.js (contract)
               |
-              |--- test-network
+              |--- Test-network
                                |
                                |--- network.sh (script to create and deploy channel and chaincode)
 ```
