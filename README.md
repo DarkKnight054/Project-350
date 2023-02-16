@@ -34,3 +34,6 @@ Open terminal on "backend/crab/application" and then:
 npm install
 node app.js
 ```
+
+**Test api**
+Install "REST Client" extention on vscode and test the api using "backend/crab/application/api-test.rest" file.
