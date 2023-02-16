@@ -1,0 +1,27 @@
+
+POST http://localhost:3000/court/criminalentry
+content-type: application/json
+
+{
+    "name": "Omar Sultan",
+    "dob": "1-1-1998",
+    "gender": "Male",
+    "nationality": "Bangladeshi",
+    "crimeDesc": "used chatgpt",
+    "nid": "420420",
+    "pStartTime": "null",
+    "pEndTime": "null",
+    "courtId": "12345678",
+    "jailId": "12345678"
+}
+
+###
+POST http://localhost:3000/admin/courtentry
+content-type: application/json
+
+{
+    "courtId": "12345678",
+    "location": "Dhaka",
+    "judgeSign": "mr kashem",
+    "password": "123456" 
+}
