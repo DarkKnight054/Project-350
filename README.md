@@ -5,20 +5,24 @@
 Project-350
     |--- Frontend
     |--- Backend
+              |--- Config
+              |         |--- configtx.yaml (configure network)
+              |         |--- core.yaml (configure the peer node)
+              |         |--- orderer.yaml (configure orderer node)
               |
               |--- Crab
               |         |
               |         |--- Application
               |         |               |
-              |         |               |--- Wallet
-              |         |               |--- app.js (express server)
+              |         |               |--- Wallet (holds credentials, such as private keys and certificates)
+              |         |               |--- app.js (express server as api)
               |         |               |--- api-test.rest (to test api)
               |         |
               |         |-- Chaincode
               |                       |--- Lib
-              |                               |--- criminalRecord.js (contract)
+              |                               |--- criminalRecord.js (smart contract)
               |
-              |--- Test-network
+              |--- Test-Network
                                |
                                |--- network.sh (script to create and deploy channel and chaincode)
 ```
@@ -59,6 +63,6 @@ npm install
 node app.js
 ```
 
-**Test api**
+**Test api** <br>
 
-Install "REST Client" extention on vscode and test the api using "backend/crab/application/api-test.rest" file.
+Install "REST Client" extention on vscode and test the api using ```backend/crab/application/api-test.rest"``` file.
