@@ -1,6 +1,24 @@
 # Criminal Record Management
 
-### Project Structure
+## Table of content
+
+- [Introduction](https://github.com/DarkKnight054/Project-350#introduction)
+- [Project Structure](https://github.com/DarkKnight054/Project-350#project-structure)
+- Project Overview
+- How to run frontend
+- [How to run backend](https://github.com/DarkKnight054/Project-350#how-to-run-backend)
+
+---
+
+## Introduction
+
+Criminal record management using **Hyperledger Fabric** is an application of blockchain technology that aims to **securely** and **efficiently** manage the criminal records of individuals. The current paper-based system used by law enforcement agencies and courts to maintain criminal records is often slow, cumbersome, and prone to errors, making it difficult to maintain accurate records.
+
+Using Hyperledger Fabric, a **decentralized** and **secure system** can be created that ensures the integrity of the criminal records while maintaining **privacy** and **confidentiality**. The use of smart contracts enables the **automation** of the criminal record management process, reducing the need for manual intervention and **increasing the accuracy** of the records.
+
+--- 
+
+## Project Structure
 ```js
 Project-350
     |--- Frontend
@@ -27,10 +45,11 @@ Project-350
                                |--- network.sh (script to create and deploy channel and chaincode)
 ```
 
+---
 
-### How to run backend
+## How to run backend
 
-Open terminal and change directory to "backend/test-network"
+Open terminal and change directory to ```backend/test-network```
 
 **Stop the network:**
 
@@ -65,4 +84,4 @@ node app.js
 
 **Test api** <br>
 
-Install "REST Client" extention on vscode and test the api using ```backend/crab/application/api-test.rest"``` file.
+Install "REST Client" extention on vscode and test the api using ```backend/crab/application/api-test.rest``` file.
