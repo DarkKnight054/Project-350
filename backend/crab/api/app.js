@@ -26,6 +26,7 @@ const walletPath = path.join(__dirname, 'wallet');
 const org1UserId = 'appUser';
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 function prettyJSONString(inputString) {
   return JSON.stringify(JSON.parse(inputString), null, 2);
@@ -81,6 +82,7 @@ async function main() {
       //*============== From here to start code ===================
 
       const app = express();
+      app.use(cookieParser());
       app.use(express.json());
       app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -159,17 +161,42 @@ async function main() {
             password
           );
           console.log(`Court entry Successful\n Result: ${result}\n`);
-          res.send('successful');
+          res.send(result);
         } catch (error) {
           console.log(`*** Successfully caught the error: \n    ${error}\n`);
           res.send('failed');
         }
       });
 
-      //*============== Create Jail Entity ================
+      //*============== Court login =====================
+      app.post('/login/court', async (req, res) => {
+        const { courtId, password } = req.body;
+        console.log(`courtid: ${courtId}, password: ${password}`);
+
+        try {
+          let result = await contract.evaluateTransaction(
+            'FindCourtEntity',
+            courtId,
+            password
+          );
+
+          res.cookie('user', result.toString(), {
+            maxAge: 3600_000,
+            httpOnly: true,
+          });
+
+          res.send(result.toString());
+        } catch (error) {
+          res.status(400).json({
+            error: error.toString(),
+          });
+        }
+      });
+
+      //*============== Create Jail Entity ===========
       app.post('/admin/jailentry', async (req, res) => {
         const { jailId, location, dSign, password } = req.body;
-        const uid = `court_${jailId}`;
+        const uid = `jail_${jailId}`;
 
         try {
           let result = await contract.evaluateTransaction(
@@ -189,12 +216,37 @@ async function main() {
             password
           );
           console.log(`Jail entry Successful\n Result: ${result}\n`);
-          res.send('successful');
+          res.send(result);
         } catch (error) {
           console.log(`*** Successfully caught the error: \n    ${error}\n`);
           res.send('failed');
         }
       });
+
+      //*=============== Jail login =====================
+      app.post('/login/jail', async (req, res) => {
+        const { jailId, password } = req.body;
+        console.log(`courtid: ${jailId}, password: ${password}`);
+
+        try {
+          let result = await contract.evaluateTransaction(
+            'FindJailEntity',
+            jailId,
+            password
+          );
+          res.cookie('user', result.toString(), {
+            maxAge: 3600_000,
+            httpOnly: true,
+          });
+          res.send(result.toString());
+        } catch (error) {
+          res.status(400).json({
+            error: error.toString(),
+          });
+        }
+      });
+
+      //*================== Get criminals by court ==================
 
       app.listen(3000, () => {
         console.log('app is running on port 3000');

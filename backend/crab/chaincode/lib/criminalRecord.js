@@ -32,7 +32,7 @@ class CriminalRecord extends Contract {
   }
 
   //*============= Create Jail Entity =============
-  async CreateCourt(ctx, key, jailId, location, dSign, password) {
+  async CreateJail(ctx, key, jailId, location, dSign, password) {
     // ctx is transaction context
     const jail = {
       Key: key,

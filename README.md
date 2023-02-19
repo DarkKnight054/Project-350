@@ -30,11 +30,11 @@ Project-350
               |
               |--- Crab
               |         |
-              |         |--- Application
-              |         |               |
-              |         |               |--- Wallet (holds credentials, such as private keys and certificates)
-              |         |               |--- app.js (express server as api)
-              |         |               |--- api-test.rest (to test api)
+              |         |--- Api
+              |         |      |
+              |         |      |--- Wallet (holds credentials, such as private keys and certificates)
+              |         |      |--- app.js (express server as api)
+              |         |      |--- api-test.rest (to test api)
               |         |
               |         |-- Chaincode
               |                       |--- Lib
@@ -70,7 +70,7 @@ Open terminal and change directory to ```backend/test-network```
 ```
 
 **4. Run express server**
-Open terminal on "backend/crab/application" and then:
+Open terminal on "backend/crab/api" and then:
 
 ```
 npm install
@@ -86,4 +86,4 @@ pass: adminpw <br>
 
 **Test api** <br>
 
-Install "REST Client" extention on vscode and test the api using ```backend/crab/application/api-test.rest``` file.
+Install "REST Client" extention on vscode and test the api using ```backend/crab/api/api-test.rest``` file.
