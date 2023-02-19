@@ -1,7 +1,7 @@
 ### Routes
 
 ```python
-==== route =========== method ========== status ====== params ======
+==== endpoint ======== method ========== status ====== params ======
 
 /admin/courtentry       POST              done         courtId, location, judgeSign, password
 /admin/jailentry        POST              done         jailId, location, dSign, password 
