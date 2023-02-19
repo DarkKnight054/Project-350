@@ -1,4 +1,66 @@
 
+POST http://localhost:3000/admin/courtentry
+content-type: application/json
+
+{
+    "courtId": "12345678",
+    "location": "Dhaka",
+    "judgeSign": "mr kashem",
+    "password": "123456" 
+}
+
+###
+POST http://localhost:3000/admin/courtentry
+content-type: application/json
+
+{
+    "courtId": "23456789",
+    "location": "Narayanganj",
+    "judgeSign": "mr boltu",
+    "password": "123456"
+}
+
+###
+POST http://localhost:3000/admin/jailentry
+content-type: application/json
+
+{
+    "jailId": "23456789",
+    "location": "Narayanganj",
+    "dSign": "njail",
+    "password": "123456"
+}
+###
+
+POST http://localhost:3000/admin/jailentry
+content-type: application/json
+
+{
+    "jailId": "12345678",
+    "location": "Sylhet",
+    "dSign": "sjail",
+    "password": "123456"
+}
+
+###
+POST http://localhost:3000/login/court
+content-type: application/json
+
+{
+    "courtId": "12345678",
+    "password": "123456" 
+}
+###
+POST http://localhost:3000/login/jail
+content-type: application/json
+
+{
+    "jailId": "12345678",
+    "password": "123456" 
+}
+
+###
+
 POST http://localhost:3000/court/criminalentry
 content-type: application/json
 
@@ -29,59 +91,63 @@ content-type: application/json
     "nid": "420421",
     "pStartTime": "null",
     "pEndTime": "null",
-    "courtId": "23456789",
-    "jailId": "12345678"
-}
-
-###
-POST http://localhost:3000/admin/courtentry
-content-type: application/json
-
-{
     "courtId": "12345678",
-    "location": "Dhaka",
-    "judgeSign": "mr kashem",
-    "password": "123456" 
+    "jailId": "23456789"
 }
 
-###
-POST http://localhost:3000/admin/courtentry
-content-type: application/json
-
-{
-    "courtId": "23456789",
-    "location": "Narayanganj",
-    "judgeSign": "mr boltu",
-    "password": "123456"
-}
-
-
-###
-
-POST http://localhost:3000/login/court
-content-type: application/json
-
-{
-    "courtId": "12345678",
-    "password": "123456" 
-}
-###
-
-POST http://localhost:3000/admin/jailentry
-content-type: application/json
-
-{
-    "jailId": "23456789",
-    "location": "Narayanganj",
-    "dSign": "njail",
-    "password": "123456"
-}
 ###
 
 POST http://localhost:3000/login/jail
 content-type: application/json
 
 {
-    "jailId": "23456789",
+    "jailId": "12345678",
     "password": "123456" 
+}
+
+###
+GET http://localhost:3000/court/criminals
+
+###
+GET http://localhost:3000/jail/criminals
+content-type: application/json
+
+###
+GET http://localhost:3000/logout
+content-type: application/json
+
+
+###
+// getting error
+POST http://localhost:3000/court/updatecriminal  
+content-type: application/json
+
+{
+    "name": "Md Arif Shahriar",
+    "dob": "1-1-1998",
+    "gender": "Male",
+    "nationality": "Bangladeshi",
+    "crimeDesc": "used chatgpt",
+    "nid": "420420",
+    "pStartTime": "null",
+    "pEndTime": "null",
+    "courtId": "12345678",
+    "jailId": "23456789"
+}
+
+### 
+DELETE http://localhost:3000/court/deletecriminal
+content-type: application/json
+
+{
+    "nid": "420420"
+}
+
+###
+
+GET http://localhost:3000/criminal
+Content-Type: application/json
+
+{
+    "nid": "420420"
 }

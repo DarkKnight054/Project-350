@@ -173,8 +173,8 @@ class CriminalRecord extends Contract {
     courtId,
     jailId
   ) {
-    const exists = await this.AssetExists(ctx, key);
-    if (!exists) {
+    const exists = await ctx.stub.getState(key);
+    if (!exists || exists.length === 0) {
       throw new Error(`The criminal for nid ${nid} does not exist`);
     }
 
@@ -194,7 +194,7 @@ class CriminalRecord extends Contract {
       DocType: 'file',
     };
     // we insert data in alphabetic order using 'json-stringify-deterministic' and 'sort-keys-recursive'
-    return ctx.stub.putState(
+    return await ctx.stub.putState(
       key,
       Buffer.from(stringify(sortKeysRecursive(updatedAsset)))
     );
@@ -203,11 +203,11 @@ class CriminalRecord extends Contract {
   //*================ Delete Criminal ================
   async DeleteCriminal(ctx, nid) {
     const key = `criminal_${nid}`;
-    const exists = await this.AssetExists(ctx, key);
-    if (!exists) {
-      throw new Error(`The asset ${nid} does not exist`);
+    const exists = await ctx.stub.getState(key);
+    if (!exists || exists.length === 0) {
+      throw new Error(`The criminal for nid ${nid} does not exist`);
     }
-    return ctx.stub.deleteState(key);
+    return await ctx.stub.deleteState(key);
   }
 
   async GetAllResults(iterator, isHistory) {
