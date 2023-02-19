@@ -51,22 +51,31 @@ Project-350
 
 Open terminal and change directory to ```backend/test-network```
 
-**Stop the network:**
+**1. Stop the network:**
 
 ```
 ./network.sh down
 ```
 
-**Start test network:**
+**2. Start test network:**
 
 ```
 ./network.sh createChannel -ca -c criminalrecord -s couchdb
 ```
 
-**Install Chaincode:**
+**3. Deploy Chaincode:**
 
 ```
 ./network.sh deployCC -ccn cRecord -ccp ../crab/chaincode/ -ccl javascript
+```
+
+**4. Run express server**
+Open terminal on "backend/crab/application" and then:
+
+```
+npm install
+node app.js
+
 ```
 
 **CouchDB:**
@@ -74,13 +83,6 @@ Open terminal and change directory to ```backend/test-network```
 username: admin <br>
 pass: adminpw <br>
 
-**Run express server**
-Open terminal on "backend/crab/application" and then:
-
-```
-npm install
-node app.js
-```
 
 **Test api** <br>
 
