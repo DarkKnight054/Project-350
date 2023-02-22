@@ -1,130 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Labrada&display=swap');
 .Home {
-  background-color: #eeeeee;
-}
-.Nav-bar {
-  width: auto;
-  height: 70px;
-  display: flex;
-  padding-left: 5%;
-  padding-top: 0.5%;
-  padding-bottom: 0.5%;
-  background-color: #a52a2a;
-  box-shadow: 0px 10px 10px #888888;
+  background-color: #111343;
 }
 .app-logo {
   border-radius: 50px;
 }
-.app-name {
-  font-family: "Dancing Script", cursive;
-  font-family: "Island Moments", cursive;
-  font-family: "Itim", cursive;
-  font-family: "Kalam", cursive;
-  font-family: "Marhey", cursive;
-  font-size: 45px;
-  margin-left: 2%;
-  margin-top: auto;
-}
-.login {
-  margin-left: 70%;
-  font-family: "Dancing Script", cursive;
-  font-family: "Island Moments", cursive;
-  font-family: "Itim", cursive;
-  font-family: "Kalam", cursive;
-  font-family: "Marhey", cursive;
-  font-size: 30px;
-  margin-top: auto;
-  margin-bottom: auto;
-  cursor: pointer;
-}
-.register {
-  margin-left: 3%;
-  font-family: "Dancing Script", cursive;
-  font-family: "Island Moments", cursive;
-  font-family: "Itim", cursive;
-  font-family: "Kalam", cursive;
-  font-family: "Marhey", cursive;
-  font-size: 30px;
-  margin-top: auto;
-  margin-bottom: auto;
-  cursor: pointer;
-}
-.content1 {
+.home-heading-text{
   display: flex;
-  margin-top: 50px;
+  width: 10%;
+  padding: 15px 10px;
+  cursor: pointer;
+  color: #6e73cf;
+}
+.home-heading-text:hover{
+  color: #b1d0ab;
+}
+.middleware{
   width: 100%;
-}
-.image1 {
-  width: 60%;
-  height: 40%;
-  border-radius: 50px;
-  margin-left: 20px;
-  box-shadow: 0px 5px 5px 5px #888888, -5px -5px 5px #888888;
-}
-.text-content1 {
-  width: 500px;
-  margin: auto;
-  font-family: "Cormorant Garamond", serif;
-  color: #540023;
-}
-.image2 {
-  height: 500px;
-  border-radius: 25px;
-  box-shadow: 0px 5px 5px 5px #888888, -5px -5px 5px #888888;
-}
-.image3 {
-  box-shadow: 0px 5px 5px 5px #888888, -5px -5px 5px #888888;
-  margin-left: 75px;
-  height: 500px;
-  border-radius: 25px;
-  width: 600px;
-}
-.image4 {
-  box-shadow: 0px 5px 5px 5px #888888, -5px -5px 5px #888888;
-  margin-left: 75px;
-  height: 500px;
-  border-radius: 25px;
-  width: 500px;
-}
-.content2 {
-  display: flex;
-  height: 400px;
-  padding-left: 50px;
-  padding-top: 150px;
-  padding-bottom: 75px;
-}
-.content3 {
-  display: flex;
-  height: 300px;
-  padding-top: 25px;
-  padding-left: 25px;
-  font-family: "Cormorant Garamond", serif;
-  color: #a52a2a;
-}
-
-.text-content2 {
-  margin-top: 3%;
-  padding-left: 20px;
-  margin-right: 5px;
-  font-size: 40px;
-  color: #a52a2a;
-  font-family: "Cormorant Garamond", serif;
-}
-
-.image5 {
-  box-shadow: 0px 5px 5px 5px #888888, -5px -5px 5px #888888;
-  height: 500px;
+  min-height: 155vh;
   margin-top: 100px;
-  border-radius: 25px;
-  width: 700px;
+}
+.middleware h1{
+  text-decoration: none;
+  color: #2e7c67;
+  font-family: 'Labrada', serif;
+  font-size: 25px;
+  width: 100%;
+  text-align: center;
+  font-size: 40px;
+}
+.content-1{
+  display: flex;
+  padding: 20px 150px;
+  align-items: center;
+  justify-content: center;
+}
+.content-1 h2{
+  text-decoration: none;
+  color: #6e73cf;
+  max-width: 700px;
+  padding: 70px;
+  font-family: 'Labrada', serif;
+  font-size: 25px;
+}
+.content-1 img{
+  width: 550px;
 }
 
-.ending {
-  margin-top: 50px;
-  padding: 25px;
-  font-size: 20px;
-  font-family: "Dancing Script", cursive;
-  font-family: "Island Moments", cursive;
-  font-family: "Itim", cursive;
-  font-family: "Kalam", cursive;
-  font-family: "Marhey", cursive;
+.content-2{
+  display: flex;
+  margin-top: 100px;
+  padding: 20px 10px;
+  align-items: center;
+  justify-content: center;
+}
+.vertical-line {
+  color: #6e73cf;
+  border-left: 4px solid;
+  height: 350px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.content-2 img {
+  height: 250px;
+}
+.content-2 ol{
+  list-style-type: disc;
+  width: 250px;
+  font-size: 25px;
+  font-family: 'Labrada', serif;
+  color: #2e7c67;
+}
+
+.content-3{
+  display: flex;
+  margin-top: 120px;
+  padding: 20px 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-3 img{
+  width: 650px;
+  border-radius: 150px;
+}
+.content-3 ul{
+  width: 300px;
+  font-size: 25px;
+  font-family: 'Labrada', serif;
+  color: #6e73cf;
+  margin-right: 75px;
+
+}
+.content-3 i{
+  color: #2e7c67 !important;
+  padding-right: 15px;
 }

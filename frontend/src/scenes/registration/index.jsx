@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import './loginIndex.css';
+import './registrationIndex.css';
 import Footer from "../../components/Footer";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import LoginIcon from '@mui/icons-material/Login';
 import PersonAddAltOutlined from "@mui/icons-material/PersonAddAltOutlined";
-export default function Login({ onSubmit }) {
+export default function Registration({ onSubmit }) {
   // const [state, setState] = useState({ email: "", password: "" });
 
   return (
@@ -21,19 +21,24 @@ export default function Login({ onSubmit }) {
         <div className='heading-text'>{<LoginIcon/>}Login</div>
         <div className='heading-text'>{< PersonAddAltOutlined />}Register</div>
       </div>
-      <div className='login-App'>
-        <div className='login-Container'>
-          <h1 style={{ marginTop: "20px" }}>Sign In</h1>
+      <div className='App'>
+        <div className='loginContainer'>
+          <h1 style={{ marginTop: "20px" }}>Create An Account</h1>
           <div className='input-container'>
-            <label>Username </label>
-            <input type='text' name='uname' required />
-            {/* {renderErrorMessage("uname")} */}
+            <label>First{' '}Name </label>
+            <input type='text' name='firstname' required />
+            <label>Last{' '}Name </label>
+            <input type='text' name='lastname' required />
+          </div>
+          <div className="input-container">
+            <label>Email ID</label>
+            <input type='email' name='emailId' required />
           </div>
           <div className='input-container'>
             <label>Password </label>
             <input type='password' name='pass' required />
             {/* {renderErrorMessage("pass")} */}
-            <a href='/signup'>Create a new account</a>
+            <a href='/login'>Already have an account ? Sign In</a>
           </div>
 
           <button className='loginBut'>
