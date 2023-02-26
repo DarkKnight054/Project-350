@@ -27,6 +27,7 @@ const org1UserId = 'appUser';
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 function prettyJSONString(inputString) {
   return JSON.stringify(JSON.parse(inputString), null, 2);
@@ -85,6 +86,13 @@ async function main() {
       app.use(cookieParser());
       app.use(express.json());
       app.use(bodyParser.urlencoded({ extended: true }));
+
+      const corsOptions = {
+        origin: 'http://localhost:3000',
+        credentials: true, //access-control-allow-credentials:true
+        optionSuccessStatus: 200,
+      };
+      app.use(cors(corsOptions));
 
       //*============== Create Court Entity ===========
       app.post('/admin/courtentry', async (req, res) => {
@@ -148,13 +156,13 @@ async function main() {
 
       //*============== Court login =====================
       app.post('/login/court', async (req, res) => {
-        const { courtId, password } = req.body;
-        console.log(`courtid: ${courtId}, password: ${password}`);
+        const { email, password } = req.body;
+        console.log(`courtid: ${email}, password: ${password}`);
 
         try {
           let result = await contract.evaluateTransaction(
             'FindCourtEntity',
-            courtId,
+            email,
             password
           );
 
@@ -410,8 +418,8 @@ async function main() {
         }
       });
 
-      app.listen(3000, () => {
-        console.log('app is running on port 3000');
+      app.listen(3001, () => {
+        console.log('app is running on port 3001');
       });
     } finally {
       // Disconnect from the gateway when the application is closing

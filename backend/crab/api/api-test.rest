@@ -1,5 +1,5 @@
 
-POST http://localhost:3000/admin/courtentry
+POST http://localhost:3001/admin/courtentry
 content-type: application/json
 
 {
@@ -10,18 +10,18 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:3000/admin/courtentry
+POST http://localhost:3001/admin/courtentry
 content-type: application/json
 
 {
-    "courtId": "23456789",
+    "courtId": "court@gmail.com",
     "location": "Narayanganj",
     "judgeSign": "mr boltu",
     "password": "123456"
 }
 
 ###
-POST http://localhost:3000/admin/jailentry
+POST http://localhost:3001/admin/jailentry
 content-type: application/json
 
 {
@@ -32,7 +32,7 @@ content-type: application/json
 }
 ###
 
-POST http://localhost:3000/admin/jailentry
+POST http://localhost:3001/admin/jailentry
 content-type: application/json
 
 {
@@ -43,15 +43,15 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:3000/login/court
+POST http://localhost:3001/login/court
 content-type: application/json
 
 {
-    "courtId": "12345678",
+    "email": "court@gmail.com",
     "password": "123456" 
 }
 ###
-POST http://localhost:3000/login/jail
+POST http://localhost:3001/login/jail
 content-type: application/json
 
 {
@@ -61,7 +61,7 @@ content-type: application/json
 
 ###
 
-POST http://localhost:3000/court/criminalentry
+POST http://localhost:3001/court/criminalentry
 content-type: application/json
 
 {
@@ -79,7 +79,7 @@ content-type: application/json
 
 ###
 
-POST http://localhost:3000/court/criminalentry
+POST http://localhost:3001/court/criminalentry
 content-type: application/json
 
 {
@@ -97,7 +97,7 @@ content-type: application/json
 
 ###
 
-POST http://localhost:3000/login/jail
+POST http://localhost:3001/login/jail
 content-type: application/json
 
 {
@@ -106,20 +106,20 @@ content-type: application/json
 }
 
 ###
-GET http://localhost:3000/court/criminals
+GET http://localhost:3001/court/criminals
 
 ###
-GET http://localhost:3000/jail/criminals
+GET http://localhost:3001/jail/criminals
 content-type: application/json
 
 ###
-GET http://localhost:3000/logout
+GET http://localhost:3001/logout
 content-type: application/json
 
 
 ###
 // getting error
-POST http://localhost:3000/court/updatecriminal  
+POST http://localhost:3001/court/updatecriminal  
 content-type: application/json
 
 {
@@ -136,7 +136,7 @@ content-type: application/json
 }
 
 ### 
-DELETE http://localhost:3000/court/deletecriminal
+DELETE http://localhost:3001/court/deletecriminal
 content-type: application/json
 
 {
@@ -145,7 +145,7 @@ content-type: application/json
 
 ###
 
-GET http://localhost:3000/criminal
+GET http://localhost:3001/criminal
 Content-Type: application/json
 
 {
