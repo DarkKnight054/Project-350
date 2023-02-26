@@ -4,8 +4,22 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import LoginIcon from "@mui/icons-material/Login";
 import PersonAddAltOutlined from "@mui/icons-material/PersonAddAltOutlined";
 import Footer from "../../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const homeButton = async (event) => {
+    event.preventDefault();
+    navigate("/");
+  };
+  const logInButton = async (event) => {
+    event.preventDefault();
+    navigate("/login");
+  };
+  const registrationButton = async (event) => {
+    event.preventDefault();
+    navigate("/registration");
+  };
   return (
     <div className='Home'>
       <div className='heading'>
@@ -16,9 +30,13 @@ const Home = () => {
         />
         <div className='home-heading-text'>Jailor</div>
         <div style={{ width: "1200px" }} />
-        <div className='home-heading-text'>{<HomeOutlinedIcon />} Home</div>
-        <div className='home-heading-text'>{<LoginIcon />}Login</div>
-        <div className='home-heading-text'>
+        <div className='home-heading-text' onClick={homeButton}>
+          {<HomeOutlinedIcon />} Home
+        </div>
+        <div className='home-heading-text' onClick={logInButton}>
+          {<LoginIcon />}Login
+        </div>
+        <div className='home-heading-text' onClick={registrationButton}>
           {<PersonAddAltOutlined />}Register
         </div>
       </div>
