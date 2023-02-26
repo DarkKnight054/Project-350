@@ -8,7 +8,7 @@
 .home-heading-text{
   display: flex;
   width: 10%;
-  padding: 15px 10px;
+  padding: 5px 10px;
   cursor: pointer;
   color: #6e73cf;
 }
@@ -17,7 +17,7 @@
 }
 .middleware{
   width: 100%;
-  min-height: 155vh;
+  min-height: 200vh;
   margin-top: 100px;
 }
 .middleware h1{
@@ -45,6 +45,7 @@
 }
 .content-1 img{
   width: 550px;
+  margin-left: 20px;
 }
 
 .content-2{
@@ -75,7 +76,7 @@
 
 .content-3{
   display: flex;
-  margin-top: 120px;
+  margin-top: 100px;
   padding: 20px 10px;
   align-items: center;
   justify-content: center;

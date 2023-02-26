@@ -26,7 +26,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   );
 };
 
-const Sidebar = () => {
+const Passport_Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -138,4 +138,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default Passport_Sidebar;
