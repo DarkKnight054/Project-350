@@ -11,8 +11,8 @@ import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
 import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import PersonAddDisabledOutlinedIcon from '@mui/icons-material/PersonAddDisabledOutlined';
-
-const Item = ({ title, to, icon, selected, setSelected }) => {
+import { useNavigate } from 'react-router-dom';
+const Item = ({ title, to, onClick, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -25,7 +25,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
       icon={icon}
     >
       <Typography>{title}</Typography>
-      <Link to={to} />
+      <Link to={to} onClick={onClick} />
     </MenuItem>
   );
 };
@@ -35,6 +35,15 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState('Dashboard');
+  const navigate = useNavigate();
+  const submit = (event) => {
+    event.preventDefault();
+    navigate('/contacts', { state: { org: 'court' } });
+  };
+  const submit1 = (event) => {
+    event.preventDefault();
+    navigate('/dashboard', { state: { org: 'court' } });
+  };
 
   return (
     <Box
@@ -74,9 +83,6 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h3" color={colors.grey[100]}>
-                  ADMINIS
-                </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
                 </IconButton>
@@ -86,15 +92,6 @@ const Sidebar = () => {
 
           {!isCollapsed && (
             <Box mb="25px">
-              <Box display="flex" justifyContent="center" alignItems="center">
-                <img
-                  alt="profile-user"
-                  width="100px"
-                  height="100px"
-                  src={`../../assets/user.png`}
-                  style={{ cursor: 'pointer', borderRadius: '50%' }}
-                />
-              </Box>
               <Box textAlign="center">
                 <Typography
                   variant="h2"
@@ -102,11 +99,12 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: '10px 0 0 0' }}
                 >
-                  Ed Roh
+                  COURT
                 </Typography>
-                <Typography variant="h5" color={colors.greenAccent[500]}>
-                  VP Fancy Admin
-                </Typography>
+                <Typography
+                  variant="h5"
+                  color={colors.greenAccent[500]}
+                ></Typography>
               </Box>
             </Box>
           )}
@@ -114,7 +112,8 @@ const Sidebar = () => {
           <Box paddingLeft={isCollapsed ? undefined : '10%'}>
             <Item
               title="Dashboard"
-              to="/dashboard"
+              to="#"
+              onClick={submit1}
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -136,7 +135,8 @@ const Sidebar = () => {
             />
             <Item
               title="Criminal Information"
-              to="/contacts"
+              to="#"
+              onClick={submit}
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

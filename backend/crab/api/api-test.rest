@@ -25,7 +25,7 @@ POST http://localhost:3001/admin/jailentry
 content-type: application/json
 
 {
-    "jailId": "23456789",
+    "jailId": "jail@gmail.com",
     "location": "Narayanganj",
     "dSign": "njail",
     "password": "123456"
@@ -73,8 +73,8 @@ content-type: application/json
     "nid": "420420",
     "pStartTime": "null",
     "pEndTime": "null",
-    "courtId": "12345678",
-    "jailId": "12345678"
+    "courtId": "court@gmail.com",
+    "jailId": "jail@gmail.com"
 }
 
 ###
@@ -91,8 +91,8 @@ content-type: application/json
     "nid": "420421",
     "pStartTime": "null",
     "pEndTime": "null",
-    "courtId": "12345678",
-    "jailId": "23456789"
+    "courtId": "court@gmail.com",
+    "jailId": "jail@gmail.com"
 }
 
 ###

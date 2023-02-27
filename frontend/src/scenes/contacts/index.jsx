@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { tokens } from '../../theme';
@@ -8,13 +8,57 @@ import Header from '../../components/Header';
 import { useTheme } from '@mui/material';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { ColorModeContext, useMode } from '../../theme';
-import Sidebar from '../global/Court_Sidebar';
+import Court_Sidebar from '../global/Court_Sidebar';
+import Passport_Sidebar from '../global/Passport_Sidebar';
+import { useLocation } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import axios from 'axios';
 
 const Contacts = () => {
   const theme1 = useTheme();
   const colors = tokens(theme1.palette.mode);
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
+  const [data, setData] = useState([]);
+
+  const location = useLocation();
+  const { org } = location.state;
+  console.log(`org is : ${org}`);
+
+  useEffect(() => {
+    const cookieValue = Cookies.get('email');
+    console.log('cookie value ', cookieValue);
+    console.log('======= inside the useeffect ========');
+    if (org === 'court') {
+      axios
+        .get('http://localhost:3001/criminal/list', {
+          headers: {
+            Accept: 'application/json',
+          },
+        })
+        .then((response) => {
+          setData(response.data);
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else if (org === 'jail') {
+      axios
+        .get('http://localhost:3001/criminal/list', {
+          headers: {
+            Accept: 'application/json',
+          },
+        })
+        .then((response) => {
+          setData(response.data);
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, []);
 
   const columns = [
     { field: 'id', headerName: 'ID', flex: 0.5 },
@@ -58,13 +102,18 @@ const Contacts = () => {
       flex: 1,
     },
   ];
-
+  // console.log('org value', org);
+  // console.log('check', org === 'passport');
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className="app">
-          <Sidebar isSidebar={isSidebar} />
+          {org === 'passport' ? (
+            <Passport_Sidebar isSidebar={isSidebar} />
+          ) : (
+            <Court_Sidebar isSidebar={isSidebar} />
+          )}
           <main className="content">
             <Box m="20px">
               <Header title="CONTACTS" subtitle="List of Criminals" />

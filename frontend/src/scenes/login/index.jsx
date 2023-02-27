@@ -5,6 +5,9 @@ import Footer from '../../components/Footer';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import LoginIcon from '@mui/icons-material/Login';
 import PersonAddAltOutlined from '@mui/icons-material/PersonAddAltOutlined';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+
 export default function Login() {
   // const [state, setState] = useState({ email: "", password: "" });
 
@@ -29,23 +32,48 @@ export default function Login() {
     if (email.includes('court')) {
       console.log('enter the court');
       axios
-        .post('http://localhost:3001/login/court', formData)
+        .post('http://localhost:3001/login/court', formData, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
         .then((response) => {
-          console.log(response.data.CourtId);
+          Cookies.set('email', formData.email);
+          navigate('/dashboard', { state: { ...response.data, org: 'court' } });
+          console.log(response.data);
         })
         .catch((error) => {
           console.error(error);
         });
     } else if (email.includes('jail')) {
       axios
-        .post('http://localhost:3001/login/jail', formData)
-        .then((resposnse) => {
-          console.log(resposnse.data);
+        .post('http://localhost:3001/login/jail', formData, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        .then((response) => {
+          Cookies.set('email', formData.email);
+          navigate('/dashboard', { state: { ...response.data, org: 'jail' } });
         })
         .catch((error) => {
           console.error(error);
         });
     }
+  };
+
+  const navigate = useNavigate();
+  const homeButton = async (event) => {
+    event.preventDefault();
+    navigate('/');
+  };
+  const logInButton = async (event) => {
+    event.preventDefault();
+    navigate('/login');
+  };
+  const registrationButton = async (event) => {
+    event.preventDefault();
+    navigate('/registration');
   };
 
   return (
@@ -58,9 +86,15 @@ export default function Login() {
         />
         <div className="heading-text">Jailor</div>
         <div style={{ width: '1200px' }} />
-        <div className="heading-text">{<HomeOutlinedIcon />} Home</div>
-        <div className="heading-text">{<LoginIcon />}Login</div>
-        <div className="heading-text">{<PersonAddAltOutlined />}Register</div>
+        <div className="heading-text" onClick={homeButton}>
+          {<HomeOutlinedIcon />} Home
+        </div>
+        <div className="heading-text" onClick={logInButton}>
+          {<LoginIcon />}Login
+        </div>
+        <div className="heading-text" onClick={registrationButton}>
+          {<PersonAddAltOutlined />}Register
+        </div>
       </div>
       <div className="login-App">
         <div className="login-Container">
@@ -92,7 +126,7 @@ export default function Login() {
                 required
               />
               {/* {renderErrorMessage("pass")} */}
-              <a href="/signup">Create a new account</a>
+              <a href="/registration">Create a new account</a>
             </div>
 
             <button className="loginBut" type="submit">

@@ -167,10 +167,14 @@ async function main() {
           );
 
           const userInfo = JSON.parse(result.toString());
+          console.log(
+            `========== user infor: ${JSON.stringify(userInfo)} ============`
+          );
           res.cookie('user', userInfo, {
             maxAge: 3600_000,
-            httpOnly: true,
+            httpOnly: false,
           });
+          // console.log(`cookie data : ${res.cookie.user}`);
           console.log(userInfo.CourtId);
           res.send(result.toString());
         } catch (error) {
@@ -182,19 +186,19 @@ async function main() {
 
       //*================== Jail login =====================
       app.post('/login/jail', async (req, res) => {
-        const { jailId, password } = req.body;
-        console.log(`courtid: ${jailId}, password: ${password}`);
+        const { email, password } = req.body;
+        console.log(`courtid: ${email}, password: ${password}`);
 
         try {
           let result = await contract.evaluateTransaction(
             'FindJailEntity',
-            jailId,
+            email,
             password
           );
           const userInfo = JSON.parse(result.toString());
           res.cookie('user', userInfo, {
             maxAge: 3600_000,
-            httpOnly: true,
+            httpOnly: false,
           });
           res.send(result.toString());
         } catch (error) {
@@ -259,23 +263,20 @@ async function main() {
       });
 
       //*================== Get criminals by court ==================
-      app.get('/court/criminals', async (req, res) => {
-        if (req.cookies.user == null) {
-          res.status(400).send('You are not logged in');
-          return;
-        }
-        const findUser = req.cookies.user;
-        console.log(`court id is: ${findUser.CourtId}`);
+      app.get('/court/criminals:cookieValue', async (req, res) => {
+        const email = req.params.cookieValue;
+        console.log('======= passed mail ', email);
 
         try {
           // const findUser = req.cookies.user.toString();
           // console.log(`court id is: ${findUser.CourtId}`);
           const result = await contract.evaluateTransaction(
             'GetCriminalByCourt',
-            findUser.CourtId
+            email
           );
 
           res.send(result.toString());
+          console.log(result.toString());
         } catch (error) {
           res.status(400).send(error.toString());
         }
@@ -295,6 +296,17 @@ async function main() {
             'GetCriminalByJail',
             user.JailId
           );
+
+          res.send(result.toString());
+        } catch (error) {
+          res.status(400).send(error.toString());
+        }
+      });
+
+      //*================== Get All Criminals list ==================
+      app.get('/criminal/list', async (req, res) => {
+        try {
+          const result = await contract.evaluateTransaction('GetAllCriminals');
 
           res.send(result.toString());
         } catch (error) {
