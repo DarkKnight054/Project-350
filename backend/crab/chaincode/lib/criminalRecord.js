@@ -21,7 +21,6 @@ class CriminalRecord extends Contract {
       Location: location,
       JudgeSign: judgeSign,
       Password: password,
-      Type: 'court',
     };
     //we insert data in alphabetic order using 'json-stringify-deterministic' and 'sort-keys-recursive'
     await ctx.stub.putState(
@@ -41,7 +40,6 @@ class CriminalRecord extends Contract {
       Location: location,
       DigitalSign: dSign,
       Password: password,
-      Type: 'jail',
     };
     //we insert data in alphabetic order using 'json-stringify-deterministic' and 'sort-keys-recursive'
     await ctx.stub.putState(
@@ -114,7 +112,6 @@ class CriminalRecord extends Contract {
       PEnd: pEndTime,
       CourtId: courtId,
       JailId: jailId,
-      Type: 'criminal',
       DocType: 'file',
     };
     //we insert data in alphabetic order using 'json-stringify-deterministic' and 'sort-keys-recursive'
@@ -154,19 +151,6 @@ class CriminalRecord extends Contract {
     queryString.selector = {};
     queryString.selector.DocType = 'file';
     queryString.selector.JailId = jailId;
-    let resultsIterator = await ctx.stub.getQueryResult(
-      JSON.stringify(queryString)
-    );
-    let results = await this.GetAllResults(resultsIterator, false);
-    return JSON.stringify(results);
-  }
-
-  //*================ Get All Criminals list ==============
-  async GetAllCriminals(ctx) {
-    let queryString = {};
-    queryString.selector = {};
-    queryString.selector.DocType = 'file';
-    // queryString.selector.JailId = jailId;
     let resultsIterator = await ctx.stub.getQueryResult(
       JSON.stringify(queryString)
     );
