@@ -19,12 +19,11 @@ const Contacts = () => {
   const colors = tokens(theme1.palette.mode);
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
-  const [data, setData] = useState([]);
+  const [criminalData, setcriminalData] = useState('');
 
   const location = useLocation();
   const { org } = location.state;
   console.log(`org is : ${org}`);
-
   useEffect(() => {
     const cookieValue = Cookies.get('email');
     console.log('cookie value ', cookieValue);
@@ -37,8 +36,15 @@ const Contacts = () => {
           },
         })
         .then((response) => {
-          setData(response.data);
-          console.log(response.data);
+          console.log('Response Data', response.data);
+          let Data = [];
+          // response.data.map((criminal) => {
+          //   Data.push(criminal.Record);
+          // });
+          setcriminalData(Data);
+          // for (let elm in response.data[0].Record) {
+          //   console.log('Response Data', elm, elm.value);
+          // }
         })
         .catch((error) => {
           console.log(error);
@@ -51,59 +57,66 @@ const Contacts = () => {
           },
         })
         .then((response) => {
-          setData(response.data);
-          console.log(response.data);
+          // setData(response.data);
+          let Data = [];
+          response.data.map((criminal) => {
+            Data.push(criminal.Record);
+          });
+          setcriminalData(Data);
         })
         .catch((error) => {
           console.log(error);
         });
     }
   }, []);
-
   const columns = [
-    { field: 'id', headerName: 'ID', flex: 0.5 },
-    { field: 'registrarId', headerName: 'Registrar ID' },
+    // { field: 'id', headerName: 'ID', flex: 0.5 },
+    { field: 'Nid', headerName: 'NID' },
     {
-      field: 'name',
+      field: 'Name',
       headerName: 'Name',
       flex: 1,
       cellClassName: 'name-column--cell',
     },
     {
-      field: 'age',
-      headerName: 'Age',
-      type: 'number',
+      field: 'Crime',
+      headerName: 'Crime',
       headerAlign: 'left',
       align: 'left',
     },
     {
-      field: 'phone',
-      headerName: 'Phone Number',
+      field: 'Psd',
+      headerName: 'Punishment Start Date',
       flex: 1,
     },
     {
-      field: 'email',
-      headerName: 'Email',
+      field: 'Ped',
+      headerName: 'Punishment End Date',
       flex: 1,
     },
     {
-      field: 'address',
-      headerName: 'Address',
+      field: 'JailName',
+      headerName: 'Jail Name',
       flex: 1,
     },
     {
-      field: 'city',
-      headerName: 'City',
+      field: 'Gender',
+      headerName: 'Gender',
       flex: 1,
     },
     {
-      field: 'zipCode',
-      headerName: 'Zip Code',
+      field: 'Dob',
+      headerName: 'Date of Birth',
       flex: 1,
     },
   ];
   // console.log('org value', org);
   // console.log('check', org === 'passport');
+  if (criminalData !== undefined) {
+    for (let elm in criminalData[0]) {
+      console.log(elm, elm.value);
+    }
+  }
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>

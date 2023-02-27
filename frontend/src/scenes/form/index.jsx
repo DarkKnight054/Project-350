@@ -8,11 +8,26 @@ import Header from '../../components/Header';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { ColorModeContext, useMode } from '../../theme';
 import Sidebar from '../global/Court_Sidebar';
+import axios from 'axios';
 const Form = () => {
   const isNonMobile = useMediaQuery('(min-width:600px)');
 
   const handleFormSubmit = (values) => {
     console.log(values);
+    console.log(values.date);
+
+    axios
+      .post('http://localhost:3001/court/criminalentry', values, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
@@ -34,14 +49,7 @@ const Form = () => {
                 initialValues={initialValues}
                 validationSchema={checkoutSchema}
               >
-                {({
-                  values,
-                  errors,
-                  touched,
-                  handleBlur,
-                  handleChange,
-                  handleSubmit,
-                }) => (
+                {({ values, handleBlur, handleChange, handleSubmit }) => (
                   <form onSubmit={handleSubmit}>
                     <Box
                       display="grid"
@@ -60,24 +68,97 @@ const Form = () => {
                         label="Name"
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values.firstName}
+                        value={values.name}
                         name="name"
-                        error={!!touched.firstName && !!errors.firstName}
-                        helperText={touched.firstName && errors.firstName}
+                        sx={{ gridColumn: 'span 2' }}
+                      />
+                      <TextField
+                        fullWidth
+                        variant="filled"
+                        type="date"
+                        label="Date Of Birth"
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.date}
+                        name="date"
                         sx={{ gridColumn: 'span 2' }}
                       />
                       <TextField
                         fullWidth
                         variant="filled"
                         type="text"
-                        label="Date of birth"
+                        label="Jail Name"
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values.lastName}
-                        name="dob"
-                        error={!!touched.lastName && !!errors.lastName}
-                        helperText={touched.lastName && errors.lastName}
+                        value={values.jailName}
+                        name="jailName"
                         sx={{ gridColumn: 'span 2' }}
+                      />
+                      <TextField
+                        fullWidth
+                        variant="filled"
+                        type="text"
+                        label="Jail ID"
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.jailID}
+                        name="jailID"
+                        sx={{ gridColumn: 'span 2' }}
+                      />
+                      <TextField
+                        fullWidth
+                        variant="filled"
+                        type="date"
+                        label="Punishment Start Date"
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.punishmentStartDate}
+                        name="punishmentStartDate"
+                        sx={{ gridColumn: 'span 2' }}
+                      />
+                      <TextField
+                        fullWidth
+                        variant="filled"
+                        type="date"
+                        label="Punishment End Date"
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.punishmentEndDate}
+                        name="punishmentEndDate"
+                        sx={{ gridColumn: 'span 2' }}
+                      />
+                      <TextField
+                        fullWidth
+                        variant="filled"
+                        type="text"
+                        label="Email"
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.email}
+                        name="email"
+                        sx={{ gridColumn: 'span 4' }}
+                      />
+                      <TextField
+                        fullWidth
+                        variant="filled"
+                        type="text"
+                        label="National ID"
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.nid}
+                        name="nid"
+                        sx={{ gridColumn: 'span 4' }}
+                      />
+                      <TextField
+                        fullWidth
+                        variant="filled"
+                        type="text"
+                        label="Court ID"
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.courtID}
+                        name="courtID"
+                        sx={{ gridColumn: 'span 4' }}
                       />
                       <TextField
                         fullWidth
@@ -86,86 +167,29 @@ const Form = () => {
                         label="Gender"
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values.email}
+                        value={values.gender}
                         name="gender"
-                        error={!!touched.email && !!errors.email}
-                        helperText={touched.email && errors.email}
                         sx={{ gridColumn: 'span 4' }}
                       />
                       <TextField
                         fullWidth
                         variant="filled"
                         type="text"
-                        label="Nationality"
+                        label="Crime Description"
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values.contact}
-                        name="nationality"
-                        error={!!touched.contact && !!errors.contact}
-                        helperText={touched.contact && errors.contact}
-                        sx={{ gridColumn: 'span 4' }}
-                      />
-                      <TextField
-                        fullWidth
-                        variant="filled"
-                        type="text"
-                        label="Crime"
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.address1}
+                        value={values.crime}
                         name="crime"
-                        error={!!touched.address1 && !!errors.address1}
-                        helperText={touched.address1 && errors.address1}
-                        sx={{ gridColumn: 'span 4' }}
-                      />
-                      <TextField
-                        fullWidth
-                        variant="filled"
-                        type="text"
-                        label="NID"
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.address2}
-                        name="nid"
-                        error={!!touched.address2 && !!errors.address2}
-                        helperText={touched.address2 && errors.address2}
-                        sx={{ gridColumn: 'span 4' }}
-                      />
-                      <TextField
-                        fullWidth
-                        variant="filled"
-                        type="text"
-                        label="Punishment start date"
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.address2}
-                        name="psd"
-                        error={!!touched.address2 && !!errors.address2}
-                        helperText={touched.address2 && errors.address2}
-                        sx={{ gridColumn: 'span 4' }}
-                      />
-                      <TextField
-                        fullWidth
-                        variant="filled"
-                        type="text"
-                        label="Punishment end date"
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.address2}
-                        name="ped"
-                        error={!!touched.address2 && !!errors.address2}
-                        helperText={touched.address2 && errors.address2}
                         sx={{ gridColumn: 'span 4' }}
                       />
                     </Box>
-
                     <Box display="flex" justifyContent="end" mt="20px">
                       <Button
                         type="submit"
                         color="secondary"
                         variant="contained"
                       >
-                        Create/Delete New Criminal
+                        Update Criminal
                       </Button>
                     </Box>
                   </form>
@@ -179,29 +203,38 @@ const Form = () => {
   );
 };
 
-const phoneRegExp = /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
+// const phoneRegExp = /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 
 const checkoutSchema = yup.object().shape({
-  firstName: yup.string().required('required'),
-  lastName: yup.string().required('required'),
+  name: yup.string().required('required'),
   email: yup
     .string()
     .email('invalid email')
     .required('required'),
-  contact: yup
+  nid: yup
     .string()
-    .matches(phoneRegExp, 'Phone number is not valid')
+    // .matches(phoneRegExp, 'Phone number is not valid')
     .required('required'),
-  address1: yup.string().required('required'),
-  address2: yup.string().required('required'),
+  jailName: yup.string().required('required'),
+  jailID: yup.string().required('required'),
+  punishmentStartDate: yup.string().required('required'),
+  punishmentEndDate: yup.string().required('required'),
+  courtID: yup.string().required('required'),
+  gender: yup.string().required('required'),
+  crime: yup.string().required('required'),
 });
 const initialValues = {
-  firstName: '',
-  lastName: '',
+  name: '',
+  date: '',
   email: '',
-  contact: '',
-  address1: '',
-  address2: '',
+  nid: '',
+  jailName: '',
+  jailID: '',
+  punishmentStartDate: '',
+  punishmentEndDate: '',
+  courtID: '',
+  gender: '',
+  crime: '',
 };
 
 export default Form;

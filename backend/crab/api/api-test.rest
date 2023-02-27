@@ -109,6 +109,9 @@ content-type: application/json
 GET http://localhost:3001/court/criminals
 
 ###
+GET http://localhost:3001/criminal/list
+
+###
 GET http://localhost:3001/jail/criminals
 content-type: application/json
 

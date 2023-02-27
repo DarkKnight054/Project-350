@@ -212,15 +212,16 @@ async function main() {
       app.post('/court/criminalentry', async (req, res) => {
         const {
           name,
-          dob,
-          gender,
-          nationality,
-          crimeDesc,
+          date,
+          email,
           nid,
-          pStartTime,
-          pEndTime,
-          courtId,
-          jailId,
+          jailName,
+          jailID,
+          punishmentStartDate,
+          punishmentEndDate,
+          courtID,
+          gender,
+          crime,
         } = req.body;
 
         const uid = `criminal_${nid}`;
@@ -230,29 +231,31 @@ async function main() {
             'CreateCriminal',
             uid,
             name,
-            dob,
-            gender,
-            nationality,
-            crimeDesc,
+            date,
+            email,
             nid,
-            pStartTime,
-            pEndTime,
-            courtId,
-            jailId
+            jailName,
+            jailID,
+            punishmentStartDate,
+            punishmentEndDate,
+            courtID,
+            gender,
+            crime
           );
           await contract.submitTransaction(
             'CreateCriminal',
             uid,
             name,
-            dob,
-            gender,
-            nationality,
-            crimeDesc,
+            date,
+            email,
             nid,
-            pStartTime,
-            pEndTime,
-            courtId,
-            jailId
+            jailName,
+            jailID,
+            punishmentStartDate,
+            punishmentEndDate,
+            courtID,
+            gender,
+            crime
           );
           console.log(`Criminal entry Successful\n Result: ${result}\n`);
           res.send(result.toString());
@@ -308,7 +311,7 @@ async function main() {
         try {
           const result = await contract.evaluateTransaction('GetAllCriminals');
 
-          res.send(result.toString());
+          res.send(JSON.stringify(result));
         } catch (error) {
           res.status(400).send(error.toString());
         }
