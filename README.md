@@ -83,6 +83,9 @@ node app.js
 username: admin <br>
 pass: adminpw <br>
 
+**To start the stopped containers:**
+``` docker start $(docker ps -aq) ```
+
 
 **Test api** <br>
 

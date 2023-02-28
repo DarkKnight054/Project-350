@@ -234,6 +234,39 @@ class CriminalRecord extends Contract {
     return JSON.stringify(result);
   }
 
+  //*================= Set count ===================
+  async SetCount(ctx, key, court, jail, passport, police, criminal) {
+    // ctx is transaction context
+    const Count = {
+      Key: key,
+      Court: court,
+      Jail: jail,
+      Passport: passport,
+      Police: police,
+      Criminal: criminal,
+      DocType: 'count',
+    };
+    //we insert data in alphabetic order using 'json-stringify-deterministic' and 'sort-keys-recursive'
+    await ctx.stub.putState(
+      // The stub encapsulates the APIs between the chaincode implementation and the Fabric peer.
+      key,
+      Buffer.from(stringify(sortKeysRecursive(Count)))
+    );
+    return JSON.stringify(Count);
+  }
+
+  //*=============== Get Count =======================
+  async GetCount(ctx) {
+    let queryString = {};
+    queryString.selector = {};
+    queryString.selector.DocType = 'count';
+    let resultsIterator = await ctx.stub.getQueryResult(
+      JSON.stringify(queryString)
+    );
+    let results = await this.GetAllResults(resultsIterator, false);
+    return JSON.stringify(results);
+  }
+
   async GetAllResults(iterator, isHistory) {
     let allResults = [];
     let res = await iterator.next();

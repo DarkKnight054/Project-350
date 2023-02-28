@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Button, IconButton, Typography, useTheme } from '@mui/material';
 import { tokens } from '../../theme';
 import { mockTransactions } from '../../data/mockData';
@@ -14,15 +14,49 @@ import { ColorModeContext, useMode } from '../../theme';
 import Court_Sidebar from '../global/Court_Sidebar';
 import Passport_Sidebar from '../global/Passport_Sidebar';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+
 const Dashboard = ({ role }) => {
   const theme1 = useTheme();
   const colors = tokens(theme1.palette.mode);
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
+  const [count, setCount] = useState({
+    court: '',
+    jail: '',
+    passport: '',
+    police: '',
+    criminal: '',
+  });
 
   const location = useLocation();
   const { org } = location.state;
   console.log(`org value: ${org}`);
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/count', {
+        headers: {
+          Accept: 'application/json',
+        },
+      })
+      .then((response) => {
+        console.log('court count :', response.data[0].Record.Court);
+        setCount({
+          court: response.data[0].Record.Court,
+          jail: response.data[0].Record.Jail,
+          passport: response.data[0].Record.Passport,
+          police: response.data[0].Record.Police,
+          criminal: response.data[0].Record.Criminal,
+        });
+        console.log('criminal data: ', count);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  console.log('criminal data: ', count);
 
   return (
     <ColorModeContext.Provider value={colorMode}>

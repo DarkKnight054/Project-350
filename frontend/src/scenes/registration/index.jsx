@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './registrationIndex.css';
 import Footer from '../../components/Footer';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -11,8 +11,6 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Registration() {
-  // const [state, setState] = useState({ email: "", password: "" });
-
   const [formData, setFormData] = useState({
     email: '',
     person: '',
@@ -38,6 +36,7 @@ export default function Registration() {
     e.preventDefault();
     const email = formData.email;
     console.log(email);
+
     if (email.includes('court')) {
       console.log('enter the court');
       const data = {
@@ -46,6 +45,7 @@ export default function Registration() {
         judgeSign: formData.person,
         password: formData.password,
       };
+
       axios
         .post('http://localhost:3001/admin/courtentry', data, {
           headers: {
@@ -53,17 +53,17 @@ export default function Registration() {
           },
         })
         .then((response) => {
-          Cookies.set('email', formData.email);
-          toast.success('Registration successful!', {
-            position: toast.POSITION.TOP_RIGHT,
-          });
-          navigate('/login');
           console.log(response.data);
+          navigate('/login');
         })
         .catch((error) => {
           console.error(error);
         });
-    } else if (email.includes('jail') || email.includes('police')) {
+    } else if (
+      email.includes('jail') ||
+      email.includes('police') ||
+      email.includes('passport')
+    ) {
       const data = {
         jailId: formData.email,
         location: formData.location,
@@ -79,9 +79,7 @@ export default function Registration() {
         })
         .then((response) => {
           Cookies.set('email', formData.email);
-          toast('Registration successful!', {
-            position: toast.POSITION.TOP_RIGHT,
-          });
+
           navigate('/login');
         })
         .catch((error) => {

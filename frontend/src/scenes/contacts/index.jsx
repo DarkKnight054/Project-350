@@ -19,12 +19,13 @@ const Contacts = () => {
   const colors = tokens(theme1.palette.mode);
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
-  const [criminalData, setcriminalData] = useState('');
+  const [criminalData, setcriminalData] = useState([]);
 
   const location = useLocation();
   const { org } = location.state;
-  console.log(`org is : ${org}`);
+
   useEffect(() => {
+    console.log('org name: ', org);
     const cookieValue = Cookies.get('email');
     console.log('cookie value ', cookieValue);
     console.log('======= inside the useeffect ========');
@@ -36,20 +37,16 @@ const Contacts = () => {
           },
         })
         .then((response) => {
-          console.log('Response Data', response.data);
           let Data = [];
-          // response.data.map((criminal) => {
-          //   Data.push(criminal.Record);
-          // });
+          response.data.map((criminal) => {
+            Data.push(criminal.Record);
+          });
           setcriminalData(Data);
-          // for (let elm in response.data[0].Record) {
-          //   console.log('Response Data', elm, elm.value);
-          // }
         })
         .catch((error) => {
           console.log(error);
         });
-    } else if (org === 'jail') {
+    } else if (org === 'jail' || org === 'passport') {
       axios
         .get('http://localhost:3001/criminal/list', {
           headers: {
@@ -57,7 +54,6 @@ const Contacts = () => {
           },
         })
         .then((response) => {
-          // setData(response.data);
           let Data = [];
           response.data.map((criminal) => {
             Data.push(criminal.Record);
@@ -69,6 +65,19 @@ const Contacts = () => {
         });
     }
   }, []);
+
+  if (criminalData !== undefined) {
+    criminalData.map((data) => {
+      for (let elm in data) {
+        console.log('element of each data: ', elm, data[elm]);
+      }
+    });
+  }
+
+  const generateRowId = (rows) => {
+    return rows.Nid;
+  };
+
   const columns = [
     // { field: 'id', headerName: 'ID', flex: 0.5 },
     { field: 'Nid', headerName: 'NID' },
@@ -110,13 +119,7 @@ const Contacts = () => {
       flex: 1,
     },
   ];
-  // console.log('org value', org);
-  // console.log('check', org === 'passport');
-  if (criminalData !== undefined) {
-    for (let elm in criminalData[0]) {
-      console.log(elm, elm.value);
-    }
-  }
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
@@ -163,7 +166,8 @@ const Contacts = () => {
                 }}
               >
                 <DataGrid
-                  rows={mockDataContacts}
+                  rows={criminalData}
+                  getRowId={generateRowId}
                   columns={columns}
                   components={{ Toolbar: GridToolbar }}
                 />

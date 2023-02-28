@@ -117,6 +117,7 @@ async function main() {
             password
           );
           console.log(`Court entry Successful\n Result: ${result}\n`);
+          setCount('court');
           res.send(result);
         } catch (error) {
           console.log(`*** Successfully caught the error: \n    ${error}\n`);
@@ -147,6 +148,7 @@ async function main() {
             password
           );
           console.log(`Jail entry Successful\n Result: ${result}\n`);
+          setCount('jail');
           res.send(result);
         } catch (error) {
           console.log(`*** Successfully caught the error: \n    ${error}\n`);
@@ -258,6 +260,7 @@ async function main() {
             crime
           );
           console.log(`Criminal entry Successful\n Result: ${result}\n`);
+          setCount('criminal');
           res.send(result.toString());
         } catch (error) {
           console.log(`*** Successfully caught the error: \n    ${error}\n`);
@@ -311,7 +314,7 @@ async function main() {
         try {
           const result = await contract.evaluateTransaction('GetAllCriminals');
 
-          res.send(JSON.stringify(result));
+          res.send(result);
         } catch (error) {
           res.status(400).send(error.toString());
         }
@@ -423,6 +426,46 @@ async function main() {
         }
       });
 
+      //*================== Set Count ====================
+      app.post('/count', async (req, res) => {
+        const { court, jail, passport, police, criminal } = req.body;
+        const key = `count`;
+        try {
+          const result = await contract.evaluateTransaction(
+            'SetCount',
+            key,
+            court,
+            jail,
+            passport,
+            police,
+            criminal
+          );
+          await contract.submitTransaction(
+            'SetCount',
+            key,
+            court,
+            jail,
+            passport,
+            police,
+            criminal
+          );
+          res.send(result);
+        } catch (error) {
+          res.status(400).send('Count data not found');
+        }
+      });
+
+      //*================== Get Count ==================
+      app.get('/count', async (req, res) => {
+        try {
+          const result = await contract.evaluateTransaction('GetCount');
+
+          res.send(result);
+        } catch (error) {
+          res.status(400).send(error.toString());
+        }
+      });
+
       //*=================== logout =====================
       app.get('/logout', async (req, res) => {
         try {
@@ -432,6 +475,61 @@ async function main() {
           res.status(400).send(error.toString());
         }
       });
+
+      const setCount = async (org) => {
+        try {
+          let result = await contract.evaluateTransaction('GetCount');
+          result = JSON.parse(result);
+          let [
+            {
+              Record: { Court, Criminal, DocType, Jail, Key, Passport, Police },
+            },
+          ] = result;
+          console.log(Court);
+          if (org === 'court') {
+            const val = Number(Court) + 1;
+            Court = val.toString();
+          } else if (org === 'jail') {
+            let val = Number(Jail) + 1;
+            Jail = val.toString();
+          } else if (org === 'passport') {
+            let val = Number(Passport) + 1;
+            Passport = val.toString();
+          } else if (org === 'police') {
+            let val = Number(Police) + 1;
+            Police = val.toString();
+          } else if (org === 'criminal') {
+            let val = Number(Criminal) + 1;
+            Criminal = val.toString();
+          }
+          const key = `count`;
+          try {
+            const result = await contract.evaluateTransaction(
+              'SetCount',
+              key,
+              Court,
+              Jail,
+              Passport,
+              Police,
+              Criminal
+            );
+            await contract.submitTransaction(
+              'SetCount',
+              key,
+              Court,
+              Jail,
+              Passport,
+              Police,
+              Criminal
+            );
+            console.log(result.toString());
+          } catch (error) {
+            console.log(error);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
 
       app.listen(3001, () => {
         console.log('app is running on port 3001');

@@ -66,15 +66,16 @@ content-type: application/json
 
 {
     "name": "Omar Sultan",
-    "dob": "1-1-1998",
-    "gender": "Male",
-    "nationality": "Bangladeshi",
-    "crimeDesc": "used chatgpt",
-    "nid": "420420",
-    "pStartTime": "null",
-    "pEndTime": "null",
-    "courtId": "court@gmail.com",
-    "jailId": "jail@gmail.com"
+    "date": "1-1-1998",
+    "email": "court@gmail.com",
+    "nid": "122233333",
+    "jailName": "kashimpur",
+    "jailID": "420420",
+    "punishmentStartDate": "null",
+    "punishmentEndDate": "null",
+    "courtID": "court@gmail.com",
+    "gender": "male",
+    "crime": "do nothing"
 }
 
 ###
@@ -154,3 +155,20 @@ Content-Type: application/json
 {
     "nid": "420420"
 }
+
+
+### 
+POST http://localhost:3001/count
+Content-Type: application/json
+
+{
+    "court": 0,
+    "jail": 0,
+    "passport": 0,
+    "police": 0,
+    "criminal": 0
+}
+
+
+###
+GET http://localhost:3001/count
