@@ -45,7 +45,11 @@ export default function Login() {
         .catch((error) => {
           console.error(error);
         });
-    } else if (email.includes('jail')) {
+    } else if (
+      email.includes('jail') ||
+      email.includes('passport') ||
+      email.includes('police')
+    ) {
       axios
         .post('http://localhost:3001/login/jail', formData, {
           headers: {
@@ -54,7 +58,18 @@ export default function Login() {
         })
         .then((response) => {
           Cookies.set('email', formData.email);
-          navigate('/dashboard', { state: { ...response.data, org: 'jail' } });
+          if (email.includes('jail'))
+            navigate('/dashboard', {
+              state: { ...response.data, org: 'jail' },
+            });
+          else if (email.includes('passport'))
+            navigate('/dashboard', {
+              state: { ...response.data, org: 'passport' },
+            });
+          else if (email.includes('police'))
+            navigate('/dashboard', {
+              state: { ...response.data, org: 'police' },
+            });
         })
         .catch((error) => {
           console.error(error);

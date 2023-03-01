@@ -9,16 +9,13 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { ColorModeContext, useMode } from '../../theme';
 import Sidebar from '../global/Court_Sidebar';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-const CreateForm = () => {
+const UpdateForm = () => {
   const isNonMobile = useMediaQuery('(min-width:600px)');
 
   const handleFormSubmit = (values) => {
     console.log(values);
     console.log(values.date);
-    const success = () => toast('Successfully updated a new criminal!');
-    const denied = () => toast('Please provide valid information!');
+
     axios
       .post('http://localhost:3001/court/criminalentry', values, {
         headers: {
@@ -27,11 +24,9 @@ const CreateForm = () => {
       })
       .then((response) => {
         console.log(response.data);
-        success();
       })
       .catch((error) => {
         console.log(error);
-        denied();
       });
   };
   const [theme, colorMode] = useMode();
@@ -45,8 +40,8 @@ const CreateForm = () => {
           <main className="content">
             <Box m="20px">
               <Header
-                title="CREATE Criminal"
-                subtitle="Create a New Criminal Profile"
+                title="Update Criminal"
+                subtitle="Update a Criminal's Information"
               />
 
               <Formik
@@ -194,7 +189,7 @@ const CreateForm = () => {
                         color="secondary"
                         variant="contained"
                       >
-                        Create Criminal
+                        Update Criminal
                       </Button>
                     </Box>
                   </form>
@@ -242,4 +237,4 @@ const initialValues = {
   crime: '',
 };
 
-export default CreateForm;
+export default UpdateForm;

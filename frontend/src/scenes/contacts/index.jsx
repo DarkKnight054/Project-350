@@ -38,7 +38,9 @@ const Contacts = () => {
         })
         .then((response) => {
           let Data = [];
+          let counter = 1;
           response.data.map((criminal) => {
+            criminal.Record['id'] = counter++;
             Data.push(criminal.Record);
           });
           setcriminalData(Data);
@@ -55,7 +57,9 @@ const Contacts = () => {
         })
         .then((response) => {
           let Data = [];
+          let counter = 1;
           response.data.map((criminal) => {
+            criminal.Record['id'] = counter++;
             Data.push(criminal.Record);
           });
           setcriminalData(Data);
@@ -73,14 +77,13 @@ const Contacts = () => {
       }
     });
   }
-
+  let count = 1;
   const generateRowId = (rows) => {
-    return rows.Nid;
+    return count++;
   };
 
   const columns = [
-    // { field: 'id', headerName: 'ID', flex: 0.5 },
-    { field: 'Nid', headerName: 'NID' },
+    { field: 'id', headerName: 'ID', flex: 0.5 },
     {
       field: 'Name',
       headerName: 'Name',
@@ -93,6 +96,7 @@ const Contacts = () => {
       headerAlign: 'left',
       align: 'left',
     },
+    { field: 'Nid', headerName: 'NID' },
     {
       field: 'Psd',
       headerName: 'Punishment Start Date',

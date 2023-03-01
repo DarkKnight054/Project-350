@@ -49,7 +49,6 @@ const Dashboard = ({ role }) => {
           police: response.data[0].Record.Police,
           criminal: response.data[0].Record.Criminal,
         });
-        console.log('criminal data: ', count);
       })
       .catch((error) => {
         console.log(error);
@@ -113,10 +112,10 @@ const Dashboard = ({ role }) => {
                   justifyContent="center"
                 >
                   <StatBox
-                    title="12,361"
-                    subtitle="Emails Sent"
+                    title={count.court}
+                    subtitle="Courts"
                     progress="0.75"
-                    increase="+14%"
+                    // increase="+14%"
                     icon={
                       <EmailIcon
                         sx={{
@@ -135,10 +134,10 @@ const Dashboard = ({ role }) => {
                   justifyContent="center"
                 >
                   <StatBox
-                    title="431,225"
-                    subtitle="Sales Obtained"
+                    title={count.jail}
+                    subtitle="Jails"
                     progress="0.50"
-                    increase="+21%"
+                    // increase="+21%"
                     icon={
                       <PointOfSaleIcon
                         sx={{
@@ -157,10 +156,10 @@ const Dashboard = ({ role }) => {
                   justifyContent="center"
                 >
                   <StatBox
-                    title="32,441"
-                    subtitle="New Clients"
+                    title={count.passport}
+                    subtitle="Immigration offices"
                     progress="0.30"
-                    increase="+5%"
+                    // increase="+5%"
                     icon={
                       <PersonAddIcon
                         sx={{
@@ -179,10 +178,10 @@ const Dashboard = ({ role }) => {
                   justifyContent="center"
                 >
                   <StatBox
-                    title="1,325,134"
-                    subtitle="Traffic Received"
+                    title={count.police}
+                    subtitle="Police Stations"
                     progress="0.80"
-                    increase="+43%"
+                    // increase="+43%"
                     icon={
                       <TrafficIcon
                         sx={{
@@ -196,7 +195,7 @@ const Dashboard = ({ role }) => {
 
                 {/* ROW 2 */}
                 <Box
-                  gridColumn="span 8"
+                  gridColumn="span 4"
                   gridRow="span 2"
                   backgroundColor={colors.primary[600]}
                 >
@@ -213,14 +212,14 @@ const Dashboard = ({ role }) => {
                         fontWeight="600"
                         color={colors.grey[800]}
                       >
-                        Revenue Generated
+                        Total Criminals
                       </Typography>
                       <Typography
                         variant="h3"
                         fontWeight="bold"
                         color={colors.greenAccent[500]}
                       >
-                        $59,342.32
+                        {count.criminal}
                       </Typography>
                     </Box>
                     <Box>
@@ -236,7 +235,7 @@ const Dashboard = ({ role }) => {
                   </Box>
                 </Box>
                 <Box
-                  gridColumn="span 4"
+                  gridColumn="span 8"
                   gridRow="span 2"
                   backgroundColor={colors.primary[600]}
                   overflow="auto"

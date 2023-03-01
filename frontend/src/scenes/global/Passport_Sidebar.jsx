@@ -8,6 +8,7 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 const Item = ({ title, to, onClick, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -31,6 +32,13 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState('Dashboard');
+
+  const location = useLocation();
+  const { org } = location.state;
+  let orgName = '';
+  if (org === 'jail') orgName = 'Jail';
+  else if (org === 'passport') orgName = 'Immigration';
+  else if (org === 'police') orgName = 'Police Station';
 
   const navigate = useNavigate();
   const submit = (event) => {
@@ -97,7 +105,7 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: '10px 0 0 0' }}
                 >
-                  Govt. Organization
+                  {orgName}
                 </Typography>
               </Box>
             </Box>
