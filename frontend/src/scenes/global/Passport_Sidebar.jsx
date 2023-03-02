@@ -6,9 +6,11 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import { tokens } from '../../theme';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
+import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 const Item = ({ title, to, onClick, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -35,6 +37,7 @@ const Sidebar = () => {
 
   const location = useLocation();
   const { org } = location.state;
+  console.log('fahim', org);
   let orgName = '';
   if (org === 'jail') orgName = 'Jail';
   else if (org === 'passport') orgName = 'Immigration';
@@ -43,11 +46,16 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const submit = (event) => {
     event.preventDefault();
-    navigate('/contacts', { state: { org: 'passport' } });
+    navigate('/contacts', { state: { org: org } });
   };
   const submit1 = (event) => {
     event.preventDefault();
-    navigate('/dashboard', { state: { org: 'passport' } });
+    navigate('/dashboard', { state: { org: org } });
+  };
+
+  const submit3 = (event) => {
+    event.preventDefault();
+    navigate('/team', { state: { org: org } });
   };
 
   return (
@@ -130,10 +138,26 @@ const Sidebar = () => {
             </Typography>
 
             <Item
+              title="Peers"
+              to="#"
+              onClick={submit3}
+              icon={<PeopleOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
               title="Criminal Information"
               to="#"
               onClick={submit}
               icon={<ContactsOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Log Out"
+              to="/"
+              icon={<LogoutOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />

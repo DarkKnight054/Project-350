@@ -48,7 +48,7 @@ const Contacts = () => {
         .catch((error) => {
           console.log(error);
         });
-    } else if (org === 'jail' || org === 'passport') {
+    } else if (org === 'jail' || org === 'passport' || org === 'police') {
       axios
         .get('http://localhost:3001/criminal/list', {
           headers: {
@@ -85,6 +85,12 @@ const Contacts = () => {
   const columns = [
     { field: 'id', headerName: 'ID', flex: 0.5 },
     {
+      field: 'TxnId',
+      headerName: 'Txn Id',
+      headerAlign: 'left',
+      align: 'left',
+    },
+    {
       field: 'Name',
       headerName: 'Name',
       flex: 1,
@@ -105,6 +111,11 @@ const Contacts = () => {
     {
       field: 'Ped',
       headerName: 'Punishment End Date',
+      flex: 1,
+    },
+    {
+      field: 'CourtId',
+      headerName: 'Court Id',
       flex: 1,
     },
     {
@@ -129,7 +140,7 @@ const Contacts = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className="app">
-          {org === 'passport' ? (
+          {org === 'passport' || org === 'jail' || org === 'police' ? (
             <Passport_Sidebar isSidebar={isSidebar} />
           ) : (
             <Court_Sidebar isSidebar={isSidebar} />

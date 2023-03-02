@@ -37,7 +37,7 @@ export default function Registration() {
     const email = formData.email;
     console.log(email);
 
-    if (email.includes('court')) {
+    if (email.includes('@court.org.bd')) {
       console.log('enter the court');
       const data = {
         courtId: formData.email,
@@ -64,7 +64,12 @@ export default function Registration() {
       email.includes('police') ||
       email.includes('passport')
     ) {
+      let org = '';
+      if (email.includes('jail')) org = 'jail';
+      else if (email.includes('police')) org = 'police';
+      else if (email.includes('passport')) org = 'passport';
       const data = {
+        org: org,
         jailId: formData.email,
         location: formData.location,
         dSign: formData.person,

@@ -13,15 +13,17 @@ const { Contract } = require('fabric-contract-api');
 
 class CriminalRecord extends Contract {
   //*============= Create Court Entity =============
-  async CreateCourt(ctx, key, courtId, location, judgeSign, password) {
+  async CreateCourt(ctx, key, txId, courtId, location, judgeSign, password) {
     // ctx is transaction context
     const court = {
       Key: key,
-      CourtId: courtId,
+      TxnId: txId,
+      Id: courtId,
       Location: location,
-      JudgeSign: judgeSign,
+      Name: judgeSign,
       Password: password,
       Type: 'court',
+      DocType: 'org',
     };
     //we insert data in alphabetic order using 'json-stringify-deterministic' and 'sort-keys-recursive'
     await ctx.stub.putState(
@@ -33,15 +35,17 @@ class CriminalRecord extends Contract {
   }
 
   //*============= Create Jail Entity =============
-  async CreateJail(ctx, key, jailId, location, dSign, password) {
+  async CreateJail(ctx, key, txId, jailId, location, dSign, org, password) {
     // ctx is transaction context
     const jail = {
       Key: key,
-      JailId: jailId,
+      TxnId: txId,
+      Id: jailId,
       Location: location,
-      DigitalSign: dSign,
+      Name: dSign,
       Password: password,
-      Type: 'jail',
+      Type: org,
+      DocType: 'org',
     };
     //we insert data in alphabetic order using 'json-stringify-deterministic' and 'sort-keys-recursive'
     await ctx.stub.putState(
@@ -70,8 +74,8 @@ class CriminalRecord extends Contract {
   }
 
   //*================ Find Jail Entity ================
-  async FindJailEntity(ctx, jailId, password) {
-    const key = `jail_${jailId}`;
+  async FindJailEntity(ctx, jailId, org, password) {
+    const key = `${org}_${jailId}`;
 
     const userJSON = await ctx.stub.getState(key); // get the asset from chaincode state
     if (!userJSON || userJSON.length === 0) {
@@ -90,6 +94,7 @@ class CriminalRecord extends Contract {
   async CreateCriminal(
     ctx,
     key,
+    txId,
     name,
     date,
     email,
@@ -105,6 +110,7 @@ class CriminalRecord extends Contract {
     // ctx is transaction context
     const criminal = {
       Key: key,
+      TxnId: txId,
       Name: name,
       Dob: date,
       CourtMail: email,
@@ -180,6 +186,7 @@ class CriminalRecord extends Contract {
   async UpdateCriminal(
     ctx,
     key,
+    txId,
     name,
     date,
     email,
@@ -200,6 +207,7 @@ class CriminalRecord extends Contract {
     // overwriting original asset with new asset
     const updatedAsset = {
       Key: key,
+      TxnId: txId,
       Name: name,
       Dob: date,
       CourtMail: email,
@@ -260,6 +268,51 @@ class CriminalRecord extends Contract {
     let queryString = {};
     queryString.selector = {};
     queryString.selector.DocType = 'count';
+    let resultsIterator = await ctx.stub.getQueryResult(
+      JSON.stringify(queryString)
+    );
+    let results = await this.GetAllResults(resultsIterator, false);
+    return JSON.stringify(results);
+  }
+
+  //*=============== Get Organizations list =======================
+  async GetOrg(ctx) {
+    let queryString = {};
+    queryString.selector = {};
+    queryString.selector.DocType = 'org';
+    let resultsIterator = await ctx.stub.getQueryResult(
+      JSON.stringify(queryString)
+    );
+    let results = await this.GetAllResults(resultsIterator, false);
+    return JSON.stringify(results);
+  }
+
+  //*================= Create Transaction ==============
+  async CreateTxn(ctx, key, txId, date, time, type, name) {
+    // ctx is transaction context
+    const data = {
+      Key: key,
+      TxId: txId,
+      Date: date,
+      Time: time,
+      Type: type,
+      Name: name,
+      DocType: 'txn',
+    };
+    //we insert data in alphabetic order using 'json-stringify-deterministic' and 'sort-keys-recursive'
+    await ctx.stub.putState(
+      // The stub encapsulates the APIs between the chaincode implementation and the Fabric peer.
+      key,
+      Buffer.from(stringify(sortKeysRecursive(data)))
+    );
+    return JSON.stringify(data);
+  }
+
+  //*=============== Get Txn =======================
+  async GetTxn(ctx) {
+    let queryString = {};
+    queryString.selector = {};
+    queryString.selector.DocType = 'txn';
     let resultsIterator = await ctx.stub.getQueryResult(
       JSON.stringify(queryString)
     );

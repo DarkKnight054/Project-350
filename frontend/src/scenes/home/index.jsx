@@ -29,7 +29,7 @@ const Home = () => {
           className="app-logo"
           alt="appLogo"
         />
-        <div className="home-heading-text">Jailor</div>
+        <div className="home-heading-text">CRMS</div>
         <div style={{ width: '1200px' }} />
         <div className="home-heading-text" onClick={homeButton}>
           {<HomeOutlinedIcon />} Home

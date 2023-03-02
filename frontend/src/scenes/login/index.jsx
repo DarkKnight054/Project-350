@@ -14,6 +14,7 @@ export default function Login() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    org: '',
   });
 
   // const handleChange = (e) => {
@@ -27,7 +28,24 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const email = formData.email;
+    if (email.includes('jail'))
+      setFormData({
+        ...formData,
+        org: 'jail',
+      });
+    else if (email.includes('police'))
+      setFormData({
+        ...formData,
+        org: 'police',
+      });
+    else if (email.includes('passport'))
+      setFormData({
+        ...formData,
+        org: 'passport',
+      });
+
     console.log(email);
     if (email.includes('court')) {
       console.log('enter the court');
@@ -121,9 +139,12 @@ export default function Login() {
                 type="email"
                 id="email"
                 name="email"
-                onChange={(event) =>
-                  setFormData({ ...formData, email: event.target.value })
-                }
+                onChange={(event) => {
+                  setFormData({
+                    ...formData,
+                    email: event.target.value,
+                  });
+                }}
                 value={formData.email}
                 required
               />

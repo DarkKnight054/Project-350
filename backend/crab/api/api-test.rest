@@ -3,7 +3,8 @@ POST http://localhost:3001/admin/courtentry
 content-type: application/json
 
 {
-    "courtId": "12345678",
+    "org": "court",
+    "courtId": "court2@gmail.com",
     "location": "Dhaka",
     "judgeSign": "mr kashem",
     "password": "123456" 
@@ -25,6 +26,7 @@ POST http://localhost:3001/admin/jailentry
 content-type: application/json
 
 {
+    "org": "jail",
     "jailId": "jail@gmail.com",
     "location": "Narayanganj",
     "dSign": "njail",
@@ -36,7 +38,8 @@ POST http://localhost:3001/admin/jailentry
 content-type: application/json
 
 {
-    "jailId": "12345678",
+    "org": "jail",
+    "jailId": "jail2@gmail.com",
     "location": "Sylhet",
     "dSign": "sjail",
     "password": "123456"
@@ -172,3 +175,11 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3001/count
+
+###
+GET http://localhost:3001/transaction
+
+###
+GET http://localhost:3001/organizations
+
+// court and jail attribute have to be same to fetch data

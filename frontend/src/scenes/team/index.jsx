@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Box, Typography, useTheme } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import { tokens } from '../../theme';
@@ -11,68 +11,100 @@ import Header from '../../components/Header';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { ColorModeContext, useMode } from '../../theme';
 import Sidebar from '../global/Court_Sidebar';
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+import Court_Sidebar from '../global/Court_Sidebar';
+import Passport_Sidebar from '../global/Passport_Sidebar';
 
 const Team = () => {
   const theme1 = useTheme();
   const colors = tokens(theme1.palette.mode);
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
+  const [orgData, setOrgData] = useState([]);
+
+  const location = useLocation();
+  const { org } = location.state;
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/organizations', {
+        headers: {
+          Accept: 'application/json',
+        },
+      })
+      .then((response) => {
+        let Data = [];
+        let counter = 1;
+        console.log('txn data: ', response.data);
+        response.data.map((txn) => {
+          txn.Record['id'] = counter++;
+          Data.push(txn.Record);
+        });
+        setOrgData(Data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  console.log('manage team: ', orgData);
+
   const columns = [
     { field: 'id', headerName: 'ID' },
     {
-      field: 'name',
-      headerName: 'Name',
+      field: 'Id',
+      headerName: 'Email',
       flex: 1,
       cellClassName: 'name-column--cell',
     },
     {
-      field: 'age',
-      headerName: 'Age',
-      type: 'number',
+      field: 'Type',
+      headerName: 'Type of org',
       headerAlign: 'left',
       align: 'left',
     },
     {
-      field: 'phone',
-      headerName: 'Phone Number',
+      field: 'Name',
+      headerName: 'Author',
       flex: 1,
     },
     {
-      field: 'email',
-      headerName: 'Email',
+      field: 'TxnId',
+      headerName: 'Txn Id',
       flex: 1,
     },
-    {
-      field: 'accessLevel',
-      headerName: 'Access Level',
-      flex: 1,
-      renderCell: ({ row: { access } }) => {
-        return (
-          <Box
-            width="60%"
-            m="0 auto"
-            p="5px"
-            display="flex"
-            justifyContent="center"
-            backgroundColor={
-              access === 'admin'
-                ? colors.greenAccent[600]
-                : access === 'manager'
-                ? colors.greenAccent[700]
-                : colors.greenAccent[700]
-            }
-            borderRadius="4px"
-          >
-            {access === 'admin' && <AdminPanelSettingsOutlinedIcon />}
-            {access === 'manager' && <SecurityOutlinedIcon />}
-            {access === 'user' && <LockOpenOutlinedIcon />}
-            <Typography color={colors.grey[200]} sx={{ ml: '5px' }}>
-              {access}
-            </Typography>
-          </Box>
-        );
-      },
-    },
+    // {
+    //   field: 'Type',
+    //   headerName: 'Access Level',
+    //   flex: 1,
+    //   renderCell: ({ row: { access } }) => {
+    //     return (
+    //       <Box
+    //         width="60%"
+    //         m="0 auto"
+    //         p="5px"
+    //         display="flex"
+    //         justifyContent="center"
+    //         backgroundColor={
+    //           access === 'court'
+    //             ? colors.greenAccent[600]
+    //             : access === 'jail'
+    //             ? colors.greenAccent[700]
+    //             : colors.greenAccent[700]
+    //         }
+    //         borderRadius="4px"
+    //       >
+    //         {access === 'court' && <AdminPanelSettingsOutlinedIcon />}
+    //         {access === 'jail' && <SecurityOutlinedIcon />}
+    //         {access === 'police' && <LockOpenOutlinedIcon />}
+    //         <Typography color={colors.grey[200]} sx={{ ml: '5px' }}>
+    //           {access}
+    //         </Typography>
+    //       </Box>
+    //     );
+    //   },
+    // },
   ];
 
   return (
@@ -80,10 +112,17 @@ const Team = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className="app">
-          <Sidebar isSidebar={isSidebar} />
+          {org === 'passport' || org === 'jail' || org === 'police' ? (
+            <Passport_Sidebar isSidebar={isSidebar} />
+          ) : (
+            <Court_Sidebar isSidebar={isSidebar} />
+          )}
           <main className="content">
             <Box m="20px">
-              <Header title="TEAM" subtitle="Managing the Team Members" />
+              <Header
+                title="Organization's peers"
+                subtitle="Listing the peers of organizations "
+              />
               <Box
                 m="40px 0 0 0"
                 height="75vh"
@@ -113,11 +152,7 @@ const Team = () => {
                   },
                 }}
               >
-                <DataGrid
-                  checkboxSelection
-                  rows={mockDataTeam}
-                  columns={columns}
-                />
+                <DataGrid checkboxSelection rows={orgData} columns={columns} />
               </Box>
             </Box>
           </main>

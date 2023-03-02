@@ -29,6 +29,8 @@ const Dashboard = ({ role }) => {
     criminal: '',
   });
 
+  const [txnData, setTxnData] = useState([]);
+
   const location = useLocation();
   const { org } = location.state;
   console.log(`org value: ${org}`);
@@ -53,8 +55,46 @@ const Dashboard = ({ role }) => {
       .catch((error) => {
         console.log(error);
       });
+
+    axios
+      .get('http://localhost:3001/transaction', {
+        headers: {
+          Accept: 'application/json',
+        },
+      })
+      .then((response) => {
+        let Data = [];
+        let counter = 1;
+        console.log('txn data: ', response.data);
+        response.data.map((txn) => {
+          txn.Record['id'] = counter++;
+          Data.push(txn.Record);
+        });
+        Data.sort((a, b) => {
+          if (a.Date > b.Date) return -1;
+          if (a.Date < b.Date) return 1;
+          if (a.Time > b.Time) return -1;
+          if (a.Time < b.Time) return 1;
+          return 0;
+        });
+        setTxnData(Data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
+  // useEffect(() => {
+  //   txnData.sort((a, b) => {
+  //     if (a.Date < b.Date) return -1;
+  //     if (a.Date > b.Date) return 1;
+  //     if (a.Time < b.Time) return -1;
+  //     if (a.Time > b.Time) return 1;
+  //     return 0;
+  //   });
+  // }, [txnData]);
+
+  console.log('txn type: ', txnData);
   console.log('criminal data: ', count);
 
   return (
@@ -244,19 +284,57 @@ const Dashboard = ({ role }) => {
                     display="flex"
                     justifyContent="space-between"
                     alignItems="center"
-                    borderBottom={`4px solid ${colors.primary[800]}`}
                     colors={colors.grey[800]}
                     p="15px"
                   >
                     <Typography
-                      color={colors.grey[800]}
+                      color={colors.blueAccent[600]}
                       variant="h5"
                       fontWeight="600"
                     >
                       Recent Transactions
                     </Typography>
                   </Box>
-                  {mockTransactions.map((transaction, i) => (
+                  <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    p="15px"
+                    borderBottom={`4px solid ${colors.primary[800]}`}
+                  >
+                    <Box>
+                      <Typography
+                        color={colors.greenAccent[500]}
+                        variant="h5"
+                        fontWeight="600"
+                      >
+                        Transaction Date
+                      </Typography>
+                      <Typography color={colors.grey[800]}>
+                        Transaction Time
+                      </Typography>
+                    </Box>
+                    <Box
+                      color={colors.greenAccent[500]}
+                      sx={{ textAlign: 'center' }}
+                    >
+                      Transaction ID
+                    </Box>
+                    <Box
+                      color={colors.greenAccent[500]}
+                      sx={{ textAlign: 'center' }}
+                    >
+                      Transaction Type
+                    </Box>
+                    <Box
+                      color={colors.greenAccent[500]}
+                      sx={{ textAlign: 'center' }}
+                    >
+                      {' '}
+                      Transaction Name
+                    </Box>
+                  </Box>
+                  {txnData.map((transaction, i) => (
                     <Box
                       key={`${transaction.txId}-${i}`}
                       display="flex"
@@ -271,19 +349,29 @@ const Dashboard = ({ role }) => {
                           variant="h5"
                           fontWeight="600"
                         >
-                          {transaction.txId}
+                          {transaction.Date}
                         </Typography>
                         <Typography color={colors.grey[800]}>
-                          {transaction.user}
+                          {transaction.Time}
                         </Typography>
                       </Box>
-                      <Box color={colors.grey[800]}>{transaction.date}</Box>
                       <Box
-                        backgroundColor={colors.greenAccent[500]}
-                        p="5px 10px"
-                        borderRadius="4px"
+                        color={colors.grey[800]}
+                        sx={{ textAlign: 'center' }}
                       >
-                        ${transaction.cost}
+                        {transaction.TxId}
+                      </Box>
+                      <Box
+                        color={colors.grey[800]}
+                        sx={{ textAlign: 'center' }}
+                      >
+                        {transaction.Type}
+                      </Box>
+                      <Box
+                        color={colors.grey[800]}
+                        sx={{ textAlign: 'center' }}
+                      >
+                        {transaction.Name}
                       </Box>
                     </Box>
                   ))}

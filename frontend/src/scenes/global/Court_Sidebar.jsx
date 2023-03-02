@@ -12,6 +12,7 @@ import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import PersonAddDisabledOutlinedIcon from '@mui/icons-material/PersonAddDisabledOutlined';
 import { useNavigate } from 'react-router-dom';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 const Item = ({ title, to, onClick, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -43,6 +44,10 @@ const Sidebar = () => {
   const submit1 = (event) => {
     event.preventDefault();
     navigate('/dashboard', { state: { org: 'court' } });
+  };
+  const submit3 = (event) => {
+    event.preventDefault();
+    navigate('/team', { state: { org: 'court' } });
   };
 
   return (
@@ -127,8 +132,9 @@ const Sidebar = () => {
               Data
             </Typography>
             <Item
-              title="Manage Team"
-              to="/team"
+              title="Peers"
+              to="#"
+              onClick={submit3}
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -160,6 +166,13 @@ const Sidebar = () => {
               title="Update Criminal"
               to="/updatecriminal"
               icon={<PersonAddDisabledOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Log Out"
+              to="/"
+              icon={<LogoutOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />

@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Labrada&display=swap');
 .Home {
   background-color: #111343;
+  /* background-color: #001c3d; */
 }
 .app-logo {
   border-radius: 50px;
+  margin: 3px;
 }
 .home-heading-text{
   display: flex;
