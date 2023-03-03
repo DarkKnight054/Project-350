@@ -6,66 +6,73 @@ const Footer = () => {
       <div className="container">
         <div className="row">
           <div className="footer-col">
-            <h4>Bangladesh Police</h4>
+            <h4>Supreme Court of Bangladesh</h4>
 
             <ul>
               <li>
-                <a href="#">Online Store</a>
+                <a href="https://bangladesh.gov.bd/index.php">
+                  National Web portal
+                </a>
               </li>
               <li>
-                <a href="#">Shipping</a>
+                <a href="http://www.minlaw.gov.bd/">Ministry of law</a>
               </li>
               <li>
-                <a href="#">Returns</a>
+                <a href="http://bdlaws.minlaw.gov.bd/">BD Laws</a>
               </li>
               <li>
-                <a href="#">Breadscription</a>
+                <a href="https://www.judiciary.org.bd/">Judicial Portal</a>
               </li>
               <li>
-                <a href="#">Wholesale</a>
-              </li>
-            </ul>
-          </div>
-          <div className="footer-col">
-            <h4>HELPFUL STUFF</h4>
-            <ul>
-              <li>
-                <a href="#">Recipes</a>
-              </li>
-              <li>
-                <a href="#">Easy Peasy Flour Mix Recipes</a>
-              </li>
-              <li>
-                <a href="#">Recycling Info</a>
-              </li>
-              <li>
-                <a href="#">Food Safety Standards</a>
-              </li>
-              <li>
-                <a href="#">E-book</a>
-              </li>
-              <li>
-                <a href="#">Blog</a>
-              </li>
-              <li>
-                <a href="#">Sustainability</a>
+                <a href="https://supremecourt.gov.bd/web/?page=legal_aid.php&menu=10&lang=">
+                  Legal Aid
+                </a>
               </li>
             </ul>
           </div>
           <div className="footer-col">
-            <h4>QUESTIONS?</h4>
+            <h4>Bangladesh Police</h4>
             <ul>
               <li>
-                <a href="#">Contact</a>
+                <a href="https://play.google.com/store/apps/details?id=com.ntitas.bdPoliceHelpLine&hl=en&pli=1">
+                  Mobile Application
+                </a>
               </li>
               <li>
-                <a href="#">FAQ</a>
+                <a href="https://www.police.gov.bd/en/hot_line_number">
+                  Hotline Number
+                </a>
               </li>
               <li>
-                <a href="#">Find a Store</a>
+                <a href="https://pcc.police.gov.bd/ords/f?p=500:1::::::">
+                  Online Police Clearence
+                </a>
               </li>
               <li>
-                <a href="#">Store Request form</a>
+                <a href="https://www.police.gov.bd/en/press_release">
+                  Press Release
+                </a>
+              </li>
+              <li>
+                <a href="https://www.police.gov.bd/en/legal_instruments">
+                  Legal Helps
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="footer-col">
+            <h4>Department of immigrations & passports</h4>
+            <ul>
+              <li>
+                <a href="https://www.epassport.gov.bd/contact">Contact</a>
+              </li>
+              <li>
+                <a href="https://www.epassport.gov.bd/landing">E-Passport</a>
+              </li>
+              <li>
+                <a href="https://www.epassport.gov.bd/instructions/instructions">
+                  Instructions
+                </a>
               </li>
             </ul>
           </div>
@@ -91,7 +98,7 @@ const Footer = () => {
                 SIGN UP
               </button>
             </div>
-            <div className="social-links">
+            {/* <div className="social-links">
               <a href="#">
                 <i class="fab fa-facebook-f"></i>
               </a>
@@ -104,7 +111,7 @@ const Footer = () => {
               <a href="#">
                 <i class="fab fa-linkedin-in"></i>
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

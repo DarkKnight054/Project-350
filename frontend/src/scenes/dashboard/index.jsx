@@ -15,7 +15,9 @@ import Court_Sidebar from '../global/Court_Sidebar';
 import Passport_Sidebar from '../global/Passport_Sidebar';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-
+import GavelOutlinedIcon from '@mui/icons-material/GavelOutlined';
+import LocalPoliceOutlinedIcon from '@mui/icons-material/LocalPoliceOutlined';
+import CalendarViewMonthOutlinedIcon from '@mui/icons-material/CalendarViewMonthOutlined';
 const Dashboard = ({ role }) => {
   const theme1 = useTheme();
   const colors = tokens(theme1.palette.mode);
@@ -157,7 +159,7 @@ const Dashboard = ({ role }) => {
                     progress="0.75"
                     // increase="+14%"
                     icon={
-                      <EmailIcon
+                      <GavelOutlinedIcon
                         sx={{
                           color: colors.greenAccent[600],
                           fontSize: '26px',
@@ -179,7 +181,7 @@ const Dashboard = ({ role }) => {
                     progress="0.50"
                     // increase="+21%"
                     icon={
-                      <PointOfSaleIcon
+                      <CalendarViewMonthOutlinedIcon
                         sx={{
                           color: colors.greenAccent[600],
                           fontSize: '26px',
