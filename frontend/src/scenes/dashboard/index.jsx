@@ -292,7 +292,7 @@ const Dashboard = ({ role }) => {
                       variant="h5"
                       fontWeight="600"
                     >
-                      Recent Transactions
+                      Recent Activities
                     </Typography>
                   </Box>
                   <Box

@@ -230,13 +230,13 @@ const checkoutSchema = yup.object().shape({
 });
 const initialValues = {
   name: '',
-  date: '',
+  date: '02/23/2024',
   email: '',
   nid: '',
   jailName: '',
   jailID: '',
-  punishmentStartDate: '',
-  punishmentEndDate: '',
+  punishmentStartDate: '02/23/2024',
+  punishmentEndDate: '02/23/2024',
   courtID: '',
   gender: '',
   crime: '',

@@ -152,12 +152,9 @@ content-type: application/json
 
 ###
 
-GET http://localhost:3001/criminal
+GET http://localhost:3001/criminal/:"122233333"
 Content-Type: application/json
 
-{
-    "nid": "420420"
-}
 
 
 ### 

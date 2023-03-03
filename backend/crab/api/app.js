@@ -343,51 +343,54 @@ async function main() {
       app.post('/court/updatecriminal', async (req, res) => {
         const {
           name,
-          dob,
-          gender,
-          nationality,
-          crimeDesc,
+          date,
+          email,
           nid,
-          pStartTime,
-          pEndTime,
-          courtId,
-          jailId,
+          jailName,
+          jailID,
+          punishmentStartDate,
+          punishmentEndDate,
+          courtID,
+          gender,
+          crime,
         } = req.body;
 
-        const key = `criminal_${nid}`;
+        const uid = `criminal_${nid}`;
         const txId = getRandomString(12);
         try {
           let result = await contract.evaluateTransaction(
             'UpdateCriminal',
-            key,
+            uid,
             txId,
             name,
-            dob,
-            gender,
-            nationality,
-            crimeDesc,
+            date,
+            email,
             nid,
-            pStartTime,
-            pEndTime,
-            courtId,
-            jailId
+            jailName,
+            jailID,
+            punishmentStartDate,
+            punishmentEndDate,
+            courtID,
+            gender,
+            crime
           );
           await contract.submitTransaction(
             'UpdateCriminal',
-            key,
+            uid,
             txId,
             name,
-            dob,
-            gender,
-            nationality,
-            crimeDesc,
+            date,
+            email,
             nid,
-            pStartTime,
-            pEndTime,
-            courtId,
-            jailId
+            jailName,
+            jailID,
+            punishmentStartDate,
+            punishmentEndDate,
+            courtID,
+            gender,
+            crime
           );
-          createTxn(txId, 'Criminal update', name);
+          createTxn(txId, 'Criminal Updated', name);
           res.send(result.toString());
           console.log(`Criminal entry Successful\n Result: ${result}\n`);
         } catch (error) {
@@ -434,9 +437,11 @@ async function main() {
       });
 
       //*==================== Find Criminal ====================
-      app.get('/criminal', async (req, res) => {
-        const { nid } = req.body;
+      app.get('/criminal/:nid', async (req, res) => {
+        // const { nid } = req.body;
+        const nid = req.params.nid;
         const key = `criminal_${nid}`;
+        console.log('key is:', key);
         try {
           const result = await contract.evaluateTransaction(
             'FindCriminal',
