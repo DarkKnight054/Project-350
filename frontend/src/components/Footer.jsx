@@ -1,12 +1,12 @@
-import React from "react";
-import "./Footer.css";
+import React from 'react';
+import './Footer.css';
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="container">
         <div className="row">
           <div className="footer-col">
-            <h4>ONLINE SHOP</h4>
+            <h4>Bangladesh Police</h4>
 
             <ul>
               <li>
@@ -72,12 +72,24 @@ const Footer = () => {
           <div className="footer-col">
             <h4>GET E-NEWS</h4>
             <div>They're helpful and funny (sometimes, we try)!</div>
-            <div style={{ display: "flex", marginTop: "20px",height:"40px"}}>
+            <div style={{ display: 'flex', marginTop: '20px', height: '40px' }}>
               <div className="inputBox">
-                <input type="email" required="required" style={{height:"40px"}} />
+                <input
+                  type="email"
+                  required="required"
+                  style={{ height: '40px' }}
+                />
                 <span>Enter Email ID</span>
               </div>
-              <button style={{backgroundColor: "black",color: "white",cursor: "pointer"}}>SIGN UP</button>
+              <button
+                style={{
+                  backgroundColor: 'black',
+                  color: 'white',
+                  cursor: 'pointer',
+                }}
+              >
+                SIGN UP
+              </button>
             </div>
             <div className="social-links">
               <a href="#">

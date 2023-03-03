@@ -58,12 +58,12 @@ const Team = () => {
       flex: 1,
       cellClassName: 'name-column--cell',
     },
-    {
-      field: 'Type',
-      headerName: 'Type of org',
-      headerAlign: 'left',
-      align: 'left',
-    },
+    // {
+    //   field: 'Type',
+    //   headerName: 'Type of org',
+    //   headerAlign: 'left',
+    //   align: 'left',
+    // },
     {
       field: 'Name',
       headerName: 'Author',
@@ -74,37 +74,37 @@ const Team = () => {
       headerName: 'Txn Id',
       flex: 1,
     },
-    // {
-    //   field: 'Type',
-    //   headerName: 'Access Level',
-    //   flex: 1,
-    //   renderCell: ({ row: { access } }) => {
-    //     return (
-    //       <Box
-    //         width="60%"
-    //         m="0 auto"
-    //         p="5px"
-    //         display="flex"
-    //         justifyContent="center"
-    //         backgroundColor={
-    //           access === 'court'
-    //             ? colors.greenAccent[600]
-    //             : access === 'jail'
-    //             ? colors.greenAccent[700]
-    //             : colors.greenAccent[700]
-    //         }
-    //         borderRadius="4px"
-    //       >
-    //         {access === 'court' && <AdminPanelSettingsOutlinedIcon />}
-    //         {access === 'jail' && <SecurityOutlinedIcon />}
-    //         {access === 'police' && <LockOpenOutlinedIcon />}
-    //         <Typography color={colors.grey[200]} sx={{ ml: '5px' }}>
-    //           {access}
-    //         </Typography>
-    //       </Box>
-    //     );
-    //   },
-    // },
+    {
+      field: 'Type',
+      headerName: 'Access Level',
+      flex: 1,
+      renderCell: ({ row: { Type } }) => {
+        return (
+          <Box
+            width="60%"
+            m="0 auto"
+            p="5px"
+            display="flex"
+            justifyContent="center"
+            backgroundColor={
+              Type === 'court'
+                ? colors.greenAccent[600]
+                : Type === 'jail'
+                ? colors.greenAccent[700]
+                : colors.greenAccent[700]
+            }
+            borderRadius="4px"
+          >
+            {Type === 'court' && <AdminPanelSettingsOutlinedIcon />}
+            {Type === 'jail' && <SecurityOutlinedIcon />}
+            {Type === 'police' && <LockOpenOutlinedIcon />}
+            <Typography color={colors.grey[200]} sx={{ ml: '5px' }}>
+              {Type}
+            </Typography>
+          </Box>
+        );
+      },
+    },
   ];
 
   return (
