@@ -11,7 +11,7 @@ import Header from '../../components/Header';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { ColorModeContext, useMode } from '../../theme';
 import Sidebar from '../global/Court_Sidebar';
-import axios from 'axios';
+import axios from '../../config/axiosConfig';
 import { useLocation } from 'react-router-dom';
 import Court_Sidebar from '../global/Court_Sidebar';
 import Passport_Sidebar from '../global/Passport_Sidebar';
@@ -28,7 +28,7 @@ const Team = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/organizations', {
+      .get('organizations', {
         headers: {
           Accept: 'application/json',
         },

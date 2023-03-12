@@ -14,7 +14,7 @@ import { ColorModeContext, useMode } from '../../theme';
 import Court_Sidebar from '../global/Court_Sidebar';
 import Passport_Sidebar from '../global/Passport_Sidebar';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../config/axiosConfig';
 import GavelOutlinedIcon from '@mui/icons-material/GavelOutlined';
 import LocalPoliceOutlinedIcon from '@mui/icons-material/LocalPoliceOutlined';
 import CalendarViewMonthOutlinedIcon from '@mui/icons-material/CalendarViewMonthOutlined';
@@ -39,7 +39,7 @@ const Dashboard = ({ role }) => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/count', {
+      .get('count', {
         headers: {
           Accept: 'application/json',
         },
@@ -59,7 +59,7 @@ const Dashboard = ({ role }) => {
       });
 
     axios
-      .get('http://localhost:3001/transaction', {
+      .get('transaction', {
         headers: {
           Accept: 'application/json',
         },

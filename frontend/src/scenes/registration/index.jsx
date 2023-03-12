@@ -5,7 +5,7 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import LoginIcon from '@mui/icons-material/Login';
 import PersonAddAltOutlined from '@mui/icons-material/PersonAddAltOutlined';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../config/axiosConfig';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -47,7 +47,7 @@ export default function Registration() {
       };
 
       axios
-        .post('http://localhost:3001/admin/courtentry', data, {
+        .post('admin/courtentry', data, {
           headers: {
             'Content-Type': 'application/json',
           },
@@ -77,7 +77,7 @@ export default function Registration() {
       };
 
       axios
-        .post('http://localhost:3001/admin/jailentry', data, {
+        .post('admin/jailentry', data, {
           headers: {
             'Content-Type': 'application/json',
           },

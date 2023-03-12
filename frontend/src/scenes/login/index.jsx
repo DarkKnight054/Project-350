@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from '../../config/axiosConfig';
 import './loginIndex.css';
 import Footer from '../../components/Footer';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -50,7 +50,7 @@ export default function Login() {
     if (email.includes('court')) {
       console.log('enter the court');
       axios
-        .post('http://localhost:3001/login/court', formData, {
+        .post('login/court', formData, {
           headers: {
             'Content-Type': 'application/json',
           },
@@ -69,7 +69,7 @@ export default function Login() {
       email.includes('police')
     ) {
       axios
-        .post('http://localhost:3001/login/jail', formData, {
+        .post('login/jail', formData, {
           headers: {
             'Content-Type': 'application/json',
           },

@@ -12,7 +12,7 @@ import Court_Sidebar from '../global/Court_Sidebar';
 import Passport_Sidebar from '../global/Passport_Sidebar';
 import { useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import axios from 'axios';
+import axios from '../../config/axiosConfig';
 
 const Contacts = () => {
   const theme1 = useTheme();
@@ -31,7 +31,7 @@ const Contacts = () => {
     console.log('======= inside the useeffect ========');
     if (org === 'court') {
       axios
-        .get('http://localhost:3001/criminal/list', {
+        .get('criminal/list', {
           headers: {
             Accept: 'application/json',
           },
@@ -50,7 +50,7 @@ const Contacts = () => {
         });
     } else if (org === 'jail' || org === 'passport' || org === 'police') {
       axios
-        .get('http://localhost:3001/criminal/list', {
+        .get('criminal/list', {
           headers: {
             Accept: 'application/json',
           },

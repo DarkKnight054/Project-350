@@ -8,7 +8,7 @@ import Header from '../../components/Header';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { ColorModeContext, useMode } from '../../theme';
 import Sidebar from '../global/Court_Sidebar';
-import axios from 'axios';
+import axios from '../../config/axiosConfig';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const CreateForm = () => {
@@ -20,7 +20,7 @@ const CreateForm = () => {
     const success = () => toast('Successfully updated a new criminal!');
     const denied = () => toast('Please provide valid information!');
     axios
-      .post('http://localhost:3001/court/criminalentry', values, {
+      .post('court/criminalentry', values, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -212,10 +212,7 @@ const CreateForm = () => {
 
 const checkoutSchema = yup.object().shape({
   name: yup.string().required('required'),
-  email: yup
-    .string()
-    .email('invalid email')
-    .required('required'),
+  email: yup.string().email('invalid email').required('required'),
   nid: yup
     .string()
     // .matches(phoneRegExp, 'Phone number is not valid')
