@@ -88,7 +88,7 @@ async function main() {
       app.use(bodyParser.urlencoded({ extended: true }));
 
       const corsOptions = {
-        origin: 'http://localhost:3000',
+        origin: 'https://project-350-git-production-arif-sustedu.vercel.app/',
         credentials: true, //access-control-allow-credentials:true
         optionSuccessStatus: 200,
       };
