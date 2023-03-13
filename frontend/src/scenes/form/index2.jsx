@@ -11,6 +11,8 @@ import Sidebar from '../global/Court_Sidebar';
 import axios from '../../config/axiosConfig';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+
 const UpdateForm = () => {
   const [initialValues, setInitialValues] = useState({
     name: '',
@@ -26,6 +28,8 @@ const UpdateForm = () => {
     crime: '',
   });
   const isNonMobile = useMediaQuery('(min-width:600px)');
+
+  const navigate = useNavigate();
 
   const fetchData = () => {
     console.log('nid:', initialValues.nid);
@@ -70,6 +74,7 @@ const UpdateForm = () => {
       })
       .then((response) => {
         console.log(response.data);
+        navigate('/contacts', { state: { ...response.data, org: 'court' } });
       })
       .catch((error) => {
         console.log(error);

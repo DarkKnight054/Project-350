@@ -11,9 +11,12 @@ import Sidebar from '../global/Court_Sidebar';
 import axios from '../../config/axiosConfig';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+
 const CreateForm = () => {
   const isNonMobile = useMediaQuery('(min-width:600px)');
 
+  const navigate = useNavigate();
   const handleFormSubmit = (values) => {
     console.log(values);
     console.log(values.date);
@@ -28,6 +31,7 @@ const CreateForm = () => {
       .then((response) => {
         console.log(response.data);
         success();
+        navigate('/contacts', { state: { ...response.data, org: 'court' } });
       })
       .catch((error) => {
         console.log(error);

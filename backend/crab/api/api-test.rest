@@ -3,7 +3,7 @@ POST http://localhost:3001/admin/courtentry
 content-type: application/json
 
 {
-    "org": "court",
+    "org": "court77@court.org.bd",
     "courtId": "court2@gmail.com",
     "location": "Dhaka",
     "judgeSign": "mr kashem",
@@ -50,7 +50,7 @@ POST http://localhost:3001/login/court
 content-type: application/json
 
 {
-    "email": "court@gmail.com",
+    "email": "court77@court.org.bd",
     "password": "123456" 
 }
 ###

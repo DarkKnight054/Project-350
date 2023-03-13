@@ -101,7 +101,7 @@ export default function Registration() {
           className="app-logo"
           alt="appLogo"
         />
-        <div className="heading-text">Jailor</div>
+        <div className="heading-text">CRMS</div>
         <div style={{ width: '1200px' }} />
         <div className="heading-text" onClick={homeButton}>
           {<HomeOutlinedIcon />} Home
@@ -130,7 +130,7 @@ export default function Registration() {
               />
             </div>
             <div className="input-container">
-              <label>Judge/Jailor </label>
+              <label>Judge/Jailor/Officer </label>
               <input
                 type="text"
                 name="judge"

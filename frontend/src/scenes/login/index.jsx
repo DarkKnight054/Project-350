@@ -7,6 +7,8 @@ import LoginIcon from '@mui/icons-material/Login';
 import PersonAddAltOutlined from '@mui/icons-material/PersonAddAltOutlined';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
   // const [state, setState] = useState({ email: "", password: "" });
@@ -61,6 +63,7 @@ export default function Login() {
           console.log(response.data);
         })
         .catch((error) => {
+          toast.error('Form submission failed.');
           console.error(error);
         });
     } else if (
@@ -90,11 +93,11 @@ export default function Login() {
             });
         })
         .catch((error) => {
+          toast.error('Form submission failed.');
           console.error(error);
         });
     }
   };
-
   const navigate = useNavigate();
   const homeButton = async (event) => {
     event.preventDefault();
@@ -117,7 +120,7 @@ export default function Login() {
           className="app-logo"
           alt="appLogo"
         />
-        <div className="heading-text">Jailor</div>
+        <div className="heading-text">CRMS</div>
         <div style={{ width: '1200px' }} />
         <div className="heading-text" onClick={homeButton}>
           {<HomeOutlinedIcon />} Home
@@ -129,6 +132,7 @@ export default function Login() {
           {<PersonAddAltOutlined />}Register
         </div>
       </div>
+      <ToastContainer />
       <div className="login-App">
         <div className="login-Container">
           <h1 style={{ marginTop: '20px' }}>Sign In</h1>
