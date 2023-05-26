@@ -7,9 +7,8 @@ import PersonAddAltOutlined from '@mui/icons-material/PersonAddAltOutlined';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../config/axiosConfig';
 import Cookies from 'js-cookie';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 export default function Registration() {
   const [formData, setFormData] = useState({
     email: '',
@@ -45,7 +44,10 @@ export default function Registration() {
         judgeSign: formData.person,
         password: formData.password,
       };
-
+      toast.success('Successfully Registered User');
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
       axios
         .post('admin/courtentry', data, {
           headers: {
@@ -54,7 +56,6 @@ export default function Registration() {
         })
         .then((response) => {
           console.log(response.data);
-          navigate('/login');
         })
         .catch((error) => {
           console.error(error);
@@ -75,7 +76,10 @@ export default function Registration() {
         dSign: formData.person,
         password: formData.password,
       };
-
+      toast.success('Successfully Registered User');
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
       axios
         .post('admin/jailentry', data, {
           headers: {
@@ -84,8 +88,6 @@ export default function Registration() {
         })
         .then((response) => {
           Cookies.set('email', formData.email);
-
-          navigate('/login');
         })
         .catch((error) => {
           console.error(error);
@@ -113,6 +115,7 @@ export default function Registration() {
           {<PersonAddAltOutlined />}Register
         </div>
       </div>
+      <ToastContainer />
       <div className="App">
         <div className="loginContainer">
           <h1 style={{ marginTop: '20px' }}>Create An Account</h1>

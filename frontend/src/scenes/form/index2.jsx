@@ -211,7 +211,7 @@ const UpdateForm = () => {
                         fullWidth
                         variant="filled"
                         type="text"
-                        label="Email"
+                        label="Court Email"
                         onBlur={handleBlur}
                         onChange={handleFieldChange}
                         value={initialValues.email}

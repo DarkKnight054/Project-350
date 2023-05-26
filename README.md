@@ -49,6 +49,15 @@ Project-350
 
 ## How to run backend
 
+*If docker and docker-compose is not installed, then install them first*
+
+First set permission to all .sh file:
+
+Open terminal and change directory to ```backend``` and then run:
+```
+find . -type f -name "*.sh" -execdir chmod +x {} +
+```
+
 Open terminal and change directory to ```backend/test-network```
 
 **1. Stop the network:**

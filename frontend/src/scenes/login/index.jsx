@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from '../../config/axiosConfig';
 import './loginIndex.css';
 import Footer from '../../components/Footer';
@@ -7,8 +7,6 @@ import LoginIcon from '@mui/icons-material/Login';
 import PersonAddAltOutlined from '@mui/icons-material/PersonAddAltOutlined';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
   // const [state, setState] = useState({ email: "", password: "" });
@@ -27,10 +25,8 @@ export default function Login() {
   //   });
   // };
   console.log(`email: ${formData.email}`);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const email = formData.email;
     if (email.includes('jail'))
       setFormData({
@@ -63,7 +59,6 @@ export default function Login() {
           console.log(response.data);
         })
         .catch((error) => {
-          toast.error('Form submission failed.');
           console.error(error);
         });
     } else if (
@@ -93,7 +88,6 @@ export default function Login() {
             });
         })
         .catch((error) => {
-          toast.error('Form submission failed.');
           console.error(error);
         });
     }
@@ -132,7 +126,6 @@ export default function Login() {
           {<PersonAddAltOutlined />}Register
         </div>
       </div>
-      <ToastContainer />
       <div className="login-App">
         <div className="login-Container">
           <h1 style={{ marginTop: '20px' }}>Sign In</h1>
